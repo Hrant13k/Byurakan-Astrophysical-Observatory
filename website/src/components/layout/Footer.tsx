@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
+import { useLanguage } from "@/lib/i18n";
 
 const footerLinks = {
   observatory: [
@@ -26,6 +29,7 @@ const footerLinks = {
 };
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="border-t border-border/60">
       {/* Newsletter */}
@@ -33,11 +37,10 @@ export default function Footer() {
         <div className="py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
             <h3 className="text-lg font-semibold tracking-tight text-foreground">
-              Stay Connected
+              {t.footer.stayConnected}
             </h3>
             <p className="text-sm text-muted-foreground mt-1.5">
-              Subscribe to receive updates on discoveries, events, and
-              opportunities.
+              {t.footer.subscribeDesc}
             </p>
           </div>
           <form className="flex w-full md:w-auto gap-2.5">
@@ -50,7 +53,7 @@ export default function Footer() {
               type="submit"
               className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
             >
-              Subscribe
+              {t.footer.subscribe}
             </button>
           </form>
         </div>
@@ -95,7 +98,7 @@ export default function Footer() {
           {/* Observatory */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-[0.2em] uppercase text-foreground mb-5">
-              Observatory
+              {t.footer.observatory}
             </h4>
             <ul className="space-y-2.5">
               {footerLinks.observatory.map((link) => (
@@ -114,7 +117,7 @@ export default function Footer() {
           {/* Academic */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-[0.2em] uppercase text-foreground mb-5">
-              Academic
+              {t.footer.academic}
             </h4>
             <ul className="space-y-2.5">
               {footerLinks.academic.map((link) => (
@@ -133,7 +136,7 @@ export default function Footer() {
           {/* Resources */}
           <div>
             <h4 className="text-[11px] font-semibold tracking-[0.2em] uppercase text-foreground mb-5">
-              Resources
+              {t.footer.resources}
             </h4>
             <ul className="space-y-2.5">
               {footerLinks.resources.map((link) => (
@@ -156,11 +159,10 @@ export default function Footer() {
         {/* Bottom */}
         <div className="py-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] tracking-wide text-muted-foreground">
           <p>
-            &copy; {new Date().getFullYear()} Byurakan Astrophysical
-            Observatory
+            &copy; {new Date().getFullYear()} {t.footer.copyright}
           </p>
           <p>
-            NAS RA V. Ambartsumian Byurakan Astrophysical Observatory
+            {t.footer.fullName}
           </p>
         </div>
       </div>

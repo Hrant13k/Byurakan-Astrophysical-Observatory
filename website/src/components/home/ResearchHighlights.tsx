@@ -3,8 +3,10 @@
 import SectionHeading from "@/components/shared/SectionHeading";
 import ResearchCard from "@/components/cards/ResearchCard";
 import { researchAreas } from "@/data/research";
+import { useLanguage } from "@/lib/i18n";
 
 export default function ResearchHighlights() {
+  const { t } = useLanguage();
   return (
     <section className="relative py-28">
       <div className="section-divider absolute top-0 left-0 right-0" />
@@ -12,9 +14,9 @@ export default function ResearchHighlights() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeading
-          label="What We Study"
-          title="Research Areas"
-          subtitle="Advancing our understanding of the universe across multiple frontiers"
+          label={t.sections.whatWeStudy}
+          title={t.sections.researchAreas}
+          subtitle={t.sections.researchSubtitle}
         />
         <div className="mt-14 grid sm:grid-cols-2 gap-6">
           {researchAreas.map((area, index) => (

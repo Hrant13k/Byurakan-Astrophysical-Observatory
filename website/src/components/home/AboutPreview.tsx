@@ -7,8 +7,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/shared/SectionHeading";
+import { useLanguage } from "@/lib/i18n";
 
 export default function AboutPreview() {
+  const { t } = useLanguage();
   return (
     <section className="relative py-28 overflow-hidden">
       <div className="section-divider absolute top-0 left-0 right-0" />
@@ -58,23 +60,17 @@ export default function AboutPreview() {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           >
             <SectionHeading
-              label="Our Legacy"
-              title="A Legacy of Discovery"
-              subtitle="Pioneering astrophysical research for nearly eight decades"
+              label={t.aboutPreview.label}
+              title={t.aboutPreview.title}
+              subtitle={t.aboutPreview.subtitle}
               centered={false}
             />
             <div className="mt-8 space-y-5 text-[15px] text-muted-foreground leading-[1.75]">
               <p>
-                Founded in 1946 by the legendary astrophysicist Viktor
-                Ambartsumian, the Byurakan Astrophysical Observatory stands at
-                1,490 meters on the slopes of Mount Aragats &mdash; a premier
-                location for astronomical observation.
+                {t.aboutPreview.p1}
               </p>
               <p>
-                Home to the famous Markarian Survey that cataloged 1,515
-                UV-excess galaxies, Byurakan has made fundamental contributions
-                to our understanding of stellar associations, active galaxies,
-                and the evolution of the universe.
+                {t.aboutPreview.p2}
               </p>
             </div>
             <Link
@@ -84,7 +80,7 @@ export default function AboutPreview() {
                 "mt-8 gap-2.5 tracking-wide"
               )}
             >
-              Explore Our Story
+              {t.aboutPreview.cta}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>

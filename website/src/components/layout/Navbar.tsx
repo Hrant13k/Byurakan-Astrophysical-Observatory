@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, Search, Globe } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { navigation, type NavItem } from "@/data/navigation";
+import { getNavigation, type NavItem } from "@/data/navigation";
+import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 function DesktopNavItem({ item }: { item: NavItem }) {
@@ -165,8 +166,10 @@ function MobileNavItem({
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { locale, t, setLocale } = useLanguage();
+
+  const navItems = useMemo(() => getNavigation(t), [t]);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -198,60 +201,32 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:block">
               <p className="text-[15px] font-semibold leading-tight tracking-tight text-foreground">
-                Byurakan
+                {locale === "am" ? "\u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576" : "Byurakan"}
               </p>
               <p className="text-[11px] leading-tight tracking-wider uppercase text-muted-foreground">
-                Observatory
+                {locale === "am" ? "\u0531\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576" : "Observatory"}
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-7">
-            {navigation.map((item) => (
+            {navItems.map((item) => (
               <DesktopNavItem key={item.href} item={item} />
             ))}
           </nav>
 
           {/* Right side actions */}
           <div className="flex items-center gap-1">
-            {/* Search */}
-            <AnimatePresence>
-              {searchOpen && (
-                <motion.div
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: 220, opacity: 1 }}
-                  exit={{ width: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeOut" }}
-                  className="overflow-hidden"
-                >
-                  <input
-                    type="search"
-                    placeholder="Search..."
-                    className="w-full rounded-lg bg-white/[0.06] px-3.5 py-2 text-sm text-foreground placeholder:text-muted-foreground outline-none border border-border/50 focus:border-primary/50 transition-colors"
-                    autoFocus
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* Language toggle */}
             <button
-              className="inline-flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-all duration-200"
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Toggle search"
-            >
-              {searchOpen ? (
-                <X className="h-[18px] w-[18px]" />
-              ) : (
-                <Search className="h-[18px] w-[18px]" />
-              )}
-            </button>
-
-            {/* Language */}
-            <button
-              className="hidden sm:inline-flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-all duration-200"
+              onClick={() => setLocale(locale === "en" ? "am" : "en")}
+              className="hidden sm:inline-flex items-center justify-center h-8 px-2.5 rounded-lg text-[12px] font-semibold tracking-wide text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-all duration-200 gap-1.5"
               aria-label="Change language"
             >
-              <Globe className="h-[18px] w-[18px]" />
+              <span className={locale === "en" ? "text-foreground" : "text-muted-foreground/50"}>EN</span>
+              <span className="text-border">/</span>
+              <span className={locale === "am" ? "text-foreground" : "text-muted-foreground/50"}>AM</span>
             </button>
 
             {/* Mobile menu */}
@@ -267,7 +242,7 @@ export default function Navbar() {
                 className="w-[320px] bg-background/95 backdrop-blur-xl border-border/50"
               >
                 <div className="mt-6 px-1">
-                  {navigation.map((item) => (
+                  {navItems.map((item) => (
                     <MobileNavItem
                       key={item.href}
                       item={item}
@@ -277,20 +252,21 @@ export default function Navbar() {
                 </div>
                 <div className="mt-8 pt-6 border-t border-border/50 px-1">
                   <p className="text-[11px] font-medium tracking-widest uppercase text-muted-foreground mb-3">
-                    Language
+                    {t.common.language}
                   </p>
                   <div className="flex gap-2">
-                    {["EN", "AM", "RU"].map((lang) => (
+                    {(["en", "am"] as const).map((lang) => (
                       <button
                         key={lang}
+                        onClick={() => setLocale(lang)}
                         className={cn(
                           "px-4 py-2 rounded-lg text-xs font-medium transition-colors",
-                          lang === "EN"
+                          locale === lang
                             ? "bg-primary text-primary-foreground"
                             : "bg-accent text-muted-foreground hover:text-foreground"
                         )}
                       >
-                        {lang}
+                        {lang.toUpperCase()}
                       </button>
                     ))}
                   </div>

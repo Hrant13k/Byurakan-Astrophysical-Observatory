@@ -7,8 +7,10 @@ import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/shared/SectionHeading";
 import EventCard from "@/components/cards/EventCard";
 import { events } from "@/data/events";
+import { useLanguage } from "@/lib/i18n";
 
 export default function UpcomingEvents() {
+  const { t } = useLanguage();
   const upcoming = events
     .filter((e) => new Date(e.date) >= new Date())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
@@ -21,9 +23,9 @@ export default function UpcomingEvents() {
 
       <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <SectionHeading
-          label="Mark Your Calendar"
-          title="Upcoming Events"
-          subtitle="Conferences, seminars, and public programs"
+          label={t.sections.markCalendar}
+          title={t.sections.upcomingEvents}
+          subtitle={t.sections.eventsSubtitle}
         />
         <div className="mt-14 space-y-4 max-w-3xl mx-auto">
           {upcoming.map((event, index) => (
@@ -35,7 +37,7 @@ export default function UpcomingEvents() {
             href="/events"
             className={cn(buttonVariants({ variant: "outline" }), "gap-2 tracking-wide")}
           >
-            View All Events
+            {t.sections.viewAllEvents}
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

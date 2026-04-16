@@ -6,8 +6,10 @@ import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Telescope } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/lib/i18n";
 
 export default function Hero() {
+  const { t } = useLanguage();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -35,15 +37,15 @@ export default function Hero() {
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
             <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-primary mb-6">
-              Est. 1946 &mdash; Mount Aragats, Armenia
+              {t.hero.established}
             </p>
 
             <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">
-              <span className="gradient-text">Byurakan</span>
+              <span className="gradient-text">{t.hero.line1}</span>
               <br />
-              <span className="text-foreground">Astrophysical</span>
+              <span className="text-foreground">{t.hero.line2}</span>
               <br />
-              <span className="text-foreground/80">Observatory</span>
+              <span className="text-foreground/80">{t.hero.line3}</span>
             </h1>
           </motion.div>
 
@@ -53,8 +55,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="mt-8 text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed"
           >
-            A world-leading center for astrophysical research, home to the
-            legendary Markarian Survey and decades of groundbreaking discoveries.
+            {t.hero.description}
           </motion.p>
 
           <motion.div
@@ -71,7 +72,7 @@ export default function Hero() {
               )}
             >
               <Telescope className="h-4 w-4" />
-              Explore Research
+              {t.hero.exploreResearch}
             </Link>
             <Link
               href="/about"
@@ -80,7 +81,7 @@ export default function Hero() {
                 "gap-2.5 text-sm tracking-wide px-6"
               )}
             >
-              Our Story
+              {t.hero.ourStory}
               <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
@@ -94,10 +95,10 @@ export default function Hero() {
           className="mt-24 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-border/50 bg-border/50 max-w-2xl"
         >
           {[
-            { value: "78+", label: "Years" },
-            { value: "3,000+", label: "Publications" },
-            { value: "1,515", label: "Markarian Galaxies" },
-            { value: "40,000+", label: "Plate Archive" },
+            { value: "78+", label: t.hero.years },
+            { value: "3,000+", label: t.hero.publications },
+            { value: "1,515", label: t.hero.markarianGalaxies },
+            { value: "40,000+", label: t.hero.plateArchive },
           ].map((stat) => (
             <div
               key={stat.label}

@@ -3,18 +3,21 @@
 import { useState } from "react";
 import PageHeader from "@/components/shared/PageHeader";
 import EventCard from "@/components/cards/EventCard";
-import { events, eventTypes } from "@/data/events";
-
-const typeLabels: Record<string, string> = {
-  All: "All Events",
-  conference: "Conferences",
-  seminar: "Seminars",
-  workshop: "Workshops",
-  public: "Public Events",
-  school: "Summer Schools",
-};
+import { getEvents, eventTypes } from "@/data/events";
+import { useLanguage } from "@/lib/i18n";
 
 export default function EventsPage() {
+  const { t, locale } = useLanguage();
+
+  const typeLabels: Record<string, string> = {
+    All: t.common.allEvents,
+    conference: t.common.conferences,
+    seminar: t.common.seminars,
+    workshop: t.common.workshops,
+    public: t.common.publicEvents,
+    school: t.common.summerSchools,
+  };
+  const events = getEvents(locale);
   const [activeType, setActiveType] = useState("All");
 
   const filtered =
@@ -33,8 +36,8 @@ export default function EventsPage() {
   return (
     <>
       <PageHeader
-        title="Events"
-        description="Conferences, seminars, workshops, and public events at Byurakan Observatory."
+        title={t.pages.eventsTitle}
+        description={t.pages.eventsDesc}
       />
 
       <section className="py-14 pb-24">
@@ -58,7 +61,7 @@ export default function EventsPage() {
           {upcoming.length > 0 && (
             <div className="mb-16">
               <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-6">
-                Upcoming
+                {t.common.upcoming}
               </h2>
               <div className="space-y-4 max-w-3xl">
                 {upcoming.map((event, index) => (
@@ -71,7 +74,7 @@ export default function EventsPage() {
           {past.length > 0 && (
             <div>
               <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-6">
-                Past Events
+                {t.common.pastEvents}
               </h2>
               <div className="space-y-4 max-w-3xl opacity-60">
                 {past.map((event, index) => (

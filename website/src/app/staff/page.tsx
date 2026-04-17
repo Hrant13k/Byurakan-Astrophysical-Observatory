@@ -4,21 +4,25 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import PageHeader from "@/components/shared/PageHeader";
 import StaffCard from "@/components/cards/StaffCard";
-import { staff, departments } from "@/data/staff";
+import { getStaff, getDepartments } from "@/data/staff";
+import { useLanguage } from "@/lib/i18n";
 
 export default function StaffPage() {
-  const [activeDept, setActiveDept] = useState("All");
+  const { t, locale } = useLanguage();
+  const departments = getDepartments(locale);
+  const staff = getStaff(locale);
+  const [activeDept, setActiveDept] = useState(departments[0]);
 
   const filtered =
-    activeDept === "All"
+    activeDept === departments[0]
       ? staff
       : staff.filter((m) => m.department === activeDept);
 
   return (
     <>
       <PageHeader
-        title="Our Team"
-        description="Meet the researchers, scientists, and staff who drive discovery at Byurakan Observatory."
+        title={t.pages.staffTitle}
+        description={t.pages.staffDesc}
       />
 
       <section className="py-14 pb-24">

@@ -4,38 +4,40 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Send, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageHeader from "@/components/shared/PageHeader";
+import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const contactInfo = [
-  {
-    icon: MapPin,
-    title: "Address",
-    lines: ["Byurakan, Aragatsotn Province", "Armenia, 0213"],
-  },
-  {
-    icon: Phone,
-    title: "Phone",
-    lines: ["+374 232 34 142", "+374 232 34 571"],
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    lines: ["info@bao.sci.am", "director@bao.sci.am"],
-  },
-  {
-    icon: Clock,
-    title: "Visiting Hours",
-    lines: ["Tue \u2013 Sun: 10:00 \u2013 17:00", "Monday: Closed"],
-  },
-];
-
 export default function ContactPage() {
+  const { t } = useLanguage();
+
+  const contactInfo = [
+    {
+      icon: MapPin,
+      title: t.contact.address,
+      lines: ["Byurakan, Aragatsotn Province", "Armenia, 0213"],
+    },
+    {
+      icon: Phone,
+      title: t.contact.phone,
+      lines: ["+374 232 34 142", "+374 232 34 571"],
+    },
+    {
+      icon: Mail,
+      title: t.contact.email,
+      lines: ["info@bao.sci.am", "director@bao.sci.am"],
+    },
+    {
+      icon: Clock,
+      title: t.contact.visitingHours,
+      lines: ["Tue \u2013 Sun: 10:00 \u2013 17:00", "Monday: Closed"],
+    },
+  ];
   return (
     <>
       <PageHeader
-        title="Contact Us"
-        description="Get in touch with the observatory for research inquiries, visits, or collaborations."
+        title={t.pages.contactTitle}
+        description={t.pages.contactDesc}
       />
 
       <section className="py-16 pb-24">
@@ -50,7 +52,7 @@ export default function ContactPage() {
               className="lg:col-span-3"
             >
               <h2 className="text-2xl font-bold tracking-tight text-foreground mb-7">
-                Send a Message
+                {t.contact.sendMessage}
               </h2>
               <form className="space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
@@ -59,7 +61,7 @@ export default function ContactPage() {
                       htmlFor="name"
                       className="block text-[13px] font-medium text-foreground mb-2"
                     >
-                      Full Name
+                      {t.contact.fullName}
                     </label>
                     <input
                       id="name"
@@ -73,7 +75,7 @@ export default function ContactPage() {
                       htmlFor="email"
                       className="block text-[13px] font-medium text-foreground mb-2"
                     >
-                      Email
+                      {t.contact.email}
                     </label>
                     <input
                       id="email"
@@ -88,7 +90,7 @@ export default function ContactPage() {
                     htmlFor="subject"
                     className="block text-[13px] font-medium text-foreground mb-2"
                   >
-                    Subject
+                    {t.contact.subject}
                   </label>
                   <select
                     id="subject"
@@ -96,14 +98,14 @@ export default function ContactPage() {
                     defaultValue=""
                   >
                     <option value="" disabled>
-                      Select a topic
+                      {t.contact.selectTopic}
                     </option>
-                    <option>General Inquiry</option>
-                    <option>Research Collaboration</option>
-                    <option>Visiting / Tours</option>
-                    <option>Education Programs</option>
-                    <option>Media / Press</option>
-                    <option>Other</option>
+                    <option>{t.contact.generalInquiry}</option>
+                    <option>{t.contact.researchCollab}</option>
+                    <option>{t.contact.visiting}</option>
+                    <option>{t.contact.educationPrograms}</option>
+                    <option>{t.contact.mediaPress}</option>
+                    <option>{t.contact.other}</option>
                   </select>
                 </div>
                 <div>
@@ -111,7 +113,7 @@ export default function ContactPage() {
                     htmlFor="message"
                     className="block text-[13px] font-medium text-foreground mb-2"
                   >
-                    Message
+                    {t.contact.message}
                   </label>
                   <textarea
                     id="message"
@@ -122,7 +124,7 @@ export default function ContactPage() {
                 </div>
                 <Button type="submit" className="gap-2.5">
                   <Send className="h-4 w-4" />
-                  Send Message
+                  {t.contact.send}
                 </Button>
               </form>
             </motion.div>
@@ -136,7 +138,7 @@ export default function ContactPage() {
               className="lg:col-span-2 space-y-4"
             >
               <h2 className="text-2xl font-bold tracking-tight text-foreground mb-7">
-                Information
+                {t.contact.information}
               </h2>
               {contactInfo.map((info) => (
                 <div
@@ -166,7 +168,7 @@ export default function ContactPage() {
                 <div className="flex items-center gap-2 mb-3">
                   <Globe className="h-4 w-4 text-primary" />
                   <h3 className="text-[13px] font-semibold text-foreground">
-                    Online Resources
+                    {t.contact.onlineResources}
                   </h3>
                 </div>
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
@@ -197,7 +199,7 @@ export default function ContactPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-muted/30 pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold tracking-tight text-foreground mb-7">
-            Find Us
+            {t.contact.findUs}
           </h2>
           <div className="rounded-2xl overflow-hidden border border-border/60 aspect-[16/7]">
             <iframe
@@ -210,9 +212,7 @@ export default function ContactPage() {
             />
           </div>
           <p className="mt-5 text-sm text-muted-foreground">
-            Byurakan Observatory is located approximately 35 km north of
-            Yerevan, on the southern slope of Mount Aragats at an altitude of
-            1,490 meters.
+            {t.contact.mapNote}
           </p>
         </div>
       </section>

@@ -6,10 +6,12 @@ import { Search, ExternalLink, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import PageHeader from "@/components/shared/PageHeader";
 import { publications, publicationCategories } from "@/data/publications";
+import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function PublicationsPage() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
@@ -37,8 +39,8 @@ export default function PublicationsPage() {
   return (
     <>
       <PageHeader
-        title="Publications"
-        description="Explore our research output spanning stellar physics, extragalactic astronomy, cosmology, and more."
+        title={t.pages.publicationsTitle}
+        description={t.pages.publicationsDesc}
       />
 
       <section className="py-14 pb-24">
@@ -50,7 +52,7 @@ export default function PublicationsPage() {
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search by title or author..."
+                placeholder={t.common.searchPlaceholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full rounded-xl bg-muted pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground border border-border/60 outline-none focus:border-primary/50 transition-colors"
@@ -81,7 +83,7 @@ export default function PublicationsPage() {
                     : "bg-muted text-muted-foreground hover:text-foreground"
                 }`}
               >
-                All Years
+                {t.common.allYears}
               </button>
               {years.map((year) => (
                 <button
@@ -101,7 +103,7 @@ export default function PublicationsPage() {
 
           {/* Results count */}
           <p className="text-[13px] text-muted-foreground mb-6 tracking-wide">
-            {filtered.length} of {publications.length} publications
+            {filtered.length} {t.common.of} {publications.length} {t.common.publications}
           </p>
 
           {/* Publications list */}

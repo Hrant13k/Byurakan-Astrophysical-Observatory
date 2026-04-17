@@ -4,21 +4,25 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import PageHeader from "@/components/shared/PageHeader";
 import NewsCard from "@/components/cards/NewsCard";
-import { news, newsCategories } from "@/data/news";
+import { getNews, getNewsCategories } from "@/data/news";
+import { useLanguage } from "@/lib/i18n";
 
 export default function NewsPage() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t, locale } = useLanguage();
+  const newsCategories = getNewsCategories(locale);
+  const news = getNews(locale);
+  const [activeCategory, setActiveCategory] = useState(newsCategories[0]);
 
   const filtered =
-    activeCategory === "All"
+    activeCategory === newsCategories[0]
       ? news
       : news.filter((n) => n.category === activeCategory);
 
   return (
     <>
       <PageHeader
-        title="News"
-        description="Stay up to date with the latest discoveries, achievements, and developments at Byurakan Observatory."
+        title={t.pages.newsTitle}
+        description={t.pages.newsDesc}
       />
 
       <section className="py-14 pb-24">

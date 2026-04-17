@@ -6,11 +6,12 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/shared/SectionHeading";
 import EventCard from "@/components/cards/EventCard";
-import { events } from "@/data/events";
+import { getEvents } from "@/data/events";
 import { useLanguage } from "@/lib/i18n";
 
 export default function UpcomingEvents() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
+  const events = getEvents(locale);
   const upcoming = events
     .filter((e) => new Date(e.date) >= new Date())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())

@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowUpRight } from "lucide-react";
 import type { NewsItem } from "@/data/news";
+import { useLanguage } from "@/lib/i18n";
 
 export default function NewsCard({
   item,
@@ -14,6 +15,8 @@ export default function NewsCard({
   item: NewsItem;
   index?: number;
 }) {
+  const { t } = useLanguage();
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 16 }}
@@ -55,7 +58,7 @@ export default function NewsCard({
           href={`/news#${item.id}`}
           className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-2"
         >
-          Read more
+          {t.common.readMore}
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>

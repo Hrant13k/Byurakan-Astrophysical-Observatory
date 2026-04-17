@@ -2,11 +2,12 @@
 
 import SectionHeading from "@/components/shared/SectionHeading";
 import ResearchCard from "@/components/cards/ResearchCard";
-import { researchAreas } from "@/data/research";
+import { getResearchAreas } from "@/data/research";
 import { useLanguage } from "@/lib/i18n";
 
 export default function ResearchHighlights() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
+  const researchAreas = getResearchAreas(locale);
   return (
     <section className="relative py-28">
       <div className="section-divider absolute top-0 left-0 right-0" />

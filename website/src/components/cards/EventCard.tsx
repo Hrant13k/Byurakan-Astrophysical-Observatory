@@ -4,14 +4,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, MapPin } from "lucide-react";
 import type { Event } from "@/data/events";
-
-const typeLabels: Record<Event["type"], string> = {
-  conference: "Conference",
-  seminar: "Seminar",
-  workshop: "Workshop",
-  public: "Public Event",
-  school: "Summer School",
-};
+import { useLanguage } from "@/lib/i18n";
 
 const typeColors: Record<Event["type"], string> = {
   conference: "bg-chart-1/15 text-chart-1 border-chart-1/20",
@@ -28,6 +21,16 @@ export default function EventCard({
   event: Event;
   index?: number;
 }) {
+  const { t } = useLanguage();
+
+  const typeLabels: Record<Event["type"], string> = {
+    conference: t.common.conferences,
+    seminar: t.common.seminars,
+    workshop: t.common.workshops,
+    public: t.common.publicEvents,
+    school: t.common.summerSchools,
+  };
+
   const dateObj = new Date(event.date);
   const month = dateObj.toLocaleDateString("en-US", { month: "short" });
   const day = dateObj.getDate();

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import PageHeader from "@/components/shared/PageHeader";
+import { useLanguage } from "@/lib/i18n";
 
 const galleryImages = [
   {
@@ -68,10 +69,18 @@ const galleryImages = [
   },
 ];
 
-const categories = ["All", "Observatory", "Telescope", "Historic"];
+const categoryKeys = ["All", "Observatory", "Telescope", "Historic"] as const;
 
 export default function GalleryPage() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("All");
+
+  const categoryLabels: Record<string, string> = {
+    All: t.galleryCategories.all,
+    Observatory: t.galleryCategories.observatory,
+    Telescope: t.galleryCategories.telescope,
+    Historic: t.galleryCategories.historic,
+  };
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const filtered =
@@ -92,14 +101,14 @@ export default function GalleryPage() {
   return (
     <>
       <PageHeader
-        title="Gallery"
-        description="A visual journey through the Byurakan Astrophysical Observatory \u2014 its telescopes, landscapes, and history."
+        title={t.pages.galleryTitle}
+        description={t.pages.galleryDesc}
       />
 
       <section className="py-14 pb-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2 mb-12">
-            {categories.map((cat) => (
+            {categoryKeys.map((cat) => (
               <button
                 key={cat}
                 onClick={() => {
@@ -112,7 +121,7 @@ export default function GalleryPage() {
                     : "bg-muted text-muted-foreground hover:text-foreground hover:bg-accent"
                 }`}
               >
-                {cat}
+                {categoryLabels[cat]}
               </button>
             ))}
           </div>

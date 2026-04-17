@@ -1,3 +1,18 @@
+import type { Locale } from "@/lib/i18n";
+import { l, type LocalizedString } from "@/lib/i18n";
+
+interface EventData {
+  id: string;
+  title: LocalizedString;
+  description: LocalizedString;
+  date: string;
+  endDate?: string;
+  time: string;
+  location: LocalizedString;
+  type: "conference" | "seminar" | "workshop" | "public" | "school";
+  registrationUrl?: string;
+}
+
 export interface Event {
   id: string;
   title: string;
@@ -19,73 +34,135 @@ export const eventTypes = [
   "school",
 ] as const;
 
-export const events: Event[] = [
+const data: EventData[] = [
   {
     id: "biss-2026",
-    title: "13th Byurakan International Summer School",
-    description:
-      "Two-week intensive school on modern astrophysics and data science for graduate students and early-career researchers from around the world. Lectures by leading international astronomers.",
+    title: {
+      en: "13th Byurakan International Summer School",
+      am: "13-\u0580\u0564 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0561\u0574\u0561\u057c\u0561\u0575\u056b\u0576 \u0564\u057a\u0580\u0578\u0581",
+    },
+    description: {
+      en: "Two-week intensive school on modern astrophysics and data science for graduate students and early-career researchers from around the world. Lectures by leading international astronomers.",
+      am: "\u0535\u0580\u056f\u0577\u0561\u0562\u0561\u0569\u0575\u0561 \u056b\u0576\u057f\u0565\u0576\u057d\u056b\u057e \u0564\u057a\u0580\u0578\u0581 \u056a\u0561\u0574\u0561\u0576\u0561\u056f\u0561\u056f\u056b\u0581 \u0561\u057d\u057f\u0572\u0561\u0586\u056b\u0566\u056b\u056f\u0561\u0575\u056b \u0587 \u057f\u057e\u0575\u0561\u056c\u0576\u0565\u0580\u056b \u0563\u056b\u057f\u0578\u0582\u0569\u0575\u0561\u0576 \u057e\u0580\u0561\u055d \u0574\u0561\u0563\u056b\u057d\u057f\u0580\u0561\u0576\u057f\u0576\u0565\u0580\u056b \u0587 \u057d\u056f\u057d\u0576\u0561\u056f\u0561\u0576 \u0570\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0572\u0576\u0565\u0580\u056b \u0570\u0561\u0574\u0561\u0580 \u0561\u0574\u0562\u0578\u0572\u057b \u0561\u0577\u056d\u0561\u0580\u0570\u056b\u0581: \u0534\u0561\u057d\u0561\u056d\u0578\u057d\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u055d \u0561\u057c\u0561\u057b\u0561\u057f\u0561\u0580 \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0561\u057d\u057f\u0572\u0561\u0563\u0565\u057f\u0576\u0565\u0580\u056b \u056f\u0578\u0572\u0574\u056b\u0581:",
+    },
     date: "2026-09-01",
     endDate: "2026-09-14",
     time: "09:00 - 18:00",
-    location: "Byurakan Observatory Campus",
+    location: {
+      en: "Byurakan Observatory Campus",
+      am: "\u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u056b \u057f\u0561\u0580\u0561\u056e\u0584",
+    },
     type: "school",
     registrationUrl: "#",
   },
   {
     id: "agn-workshop-2026",
-    title: "Workshop on Active Galactic Nuclei in the Multi-Messenger Era",
-    description:
-      "International workshop bringing together researchers studying AGN across the electromagnetic spectrum and through gravitational waves and neutrinos.",
+    title: {
+      en: "Workshop on Active Galactic Nuclei in the Multi-Messenger Era",
+      am: "\u054d\u0565\u0574\u056b\u0576\u0561\u0580\u055d \u0561\u056f\u057f\u056b\u057e \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0574\u056b\u057b\u0578\u0582\u056f\u0576\u0565\u0580\u0568 \u0562\u0561\u0566\u0574\u0561\u0570\u0561\u0572\u0578\u0580\u0564\u0561\u056f\u0561\u0575\u056b\u0576 \u0564\u0561\u0580\u0561\u0577\u0580\u057b\u0561\u0576\u0578\u0582\u0574",
+    },
+    description: {
+      en: "International workshop bringing together researchers studying AGN across the electromagnetic spectrum and through gravitational waves and neutrinos.",
+      am: "\u0544\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u057d\u0565\u0574\u056b\u0576\u0561\u0580\u055d \u0570\u0561\u0574\u0561\u057f\u0565\u0572\u0565\u056c\u0578\u057e \u0570\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0572\u0576\u0565\u0580\u056b, \u0578\u057e\u0584\u0565\u0580 \u0578\u0582\u057d\u0578\u0582\u0574\u0576\u0561\u057d\u056b\u0580\u0578\u0582\u0574 \u0565\u0576 AGN-\u0568 \u0567\u056c\u0565\u056f\u057f\u0580\u0561\u0574\u0561\u0563\u0576\u056b\u057d\u0561\u056f\u0561\u0576 \u057d\u057a\u0565\u056f\u057f\u0580\u056b, \u0563\u0580\u0561\u057e\u056b\u057f\u0561\u0581\u056b\u0578\u0576 \u0561\u056c\u056b\u0584\u0576\u0565\u0580\u056b \u0587 \u0576\u0565\u0575\u057f\u0580\u056b\u0576\u0578\u0576\u0565\u0580\u056b \u0574\u056b\u057b\u0578\u0581\u0578\u057e:",
+    },
     date: "2026-06-15",
     endDate: "2026-06-18",
     time: "09:00 - 17:00",
-    location: "BAO Conference Hall",
+    location: {
+      en: "BAO Conference Hall",
+      am: "\u0532\u0531\u0539 \u0563\u056b\u057f\u0561\u056a\u0578\u0572\u0578\u057e\u0576\u0565\u0580\u056b \u0564\u0561\u0570\u056c\u056b\u0573",
+    },
     type: "workshop",
     registrationUrl: "#",
   },
   {
     id: "public-night-may",
-    title: "Public Stargazing Night: Jupiter and Saturn",
-    description:
-      "Join us for an evening of stargazing through our telescopes. This month features excellent views of Jupiter and Saturn. Suitable for all ages.",
+    title: {
+      en: "Public Stargazing Night: Jupiter and Saturn",
+      am: "\u0540\u0561\u0576\u0580\u0561\u0575\u056b\u0576 \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u056f\u0561\u0576 \u0565\u0580\u0565\u056f\u0578\u055d \u0545\u0578\u0582\u057a\u056b\u057f\u0565\u0580 \u0587 \u054d\u0561\u057f\u0578\u0582\u0580\u0576",
+    },
+    description: {
+      en: "Join us for an evening of stargazing through our telescopes. This month features excellent views of Jupiter and Saturn. Suitable for all ages.",
+      am: "\u0544\u056b\u0561\u0581\u0565\u0584 \u0574\u0565\u0566 \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u056f\u0561\u0576 \u0565\u0580\u0565\u056f\u0578\u0575\u056b\u0576\u055d \u0574\u0565\u0580 \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f\u0576\u0565\u0580\u0578\u057e \u0561\u057d\u057f\u0572\u0565\u0580\u056b \u0564\u056b\u057f\u0561\u0580\u056f\u0574\u0561\u0576 \u0570\u0561\u0574\u0561\u0580: \u0531\u0575\u057d \u0561\u0574\u057d\u057e\u0561 \u0570\u056b\u0561\u0576\u0561\u056c\u056b \u057f\u0565\u057d\u0561\u0580\u0561\u0576\u0576\u0565\u0580 \u0565\u0576 \u0545\u0578\u0582\u057a\u056b\u057f\u0565\u0580\u056b \u0587 \u054d\u0561\u057f\u0578\u0582\u0580\u0576\u056b \u057e\u0580\u0561: \u0540\u0561\u0580\u0574\u0561\u0580 \u0567 \u0562\u0578\u056c\u0578\u0580 \u057f\u0561\u0580\u056b\u0584\u056b \u0570\u0561\u0574\u0561\u0580:",
+    },
     date: "2026-05-20",
     time: "20:00 - 23:00",
-    location: "2.6m Telescope Dome",
+    location: {
+      en: "2.6m Telescope Dome",
+      am: "2.6\u0574 \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f\u056b \u0563\u0574\u0562\u0565\u0569",
+    },
     type: "public",
   },
   {
     id: "stellar-seminar-apr",
-    title: "Seminar: New Results on Flare Star Activity Cycles",
-    description:
-      "Dr. Hayk Harutyunyan presents new findings on the long-term activity cycles of UV Ceti-type flare stars observed at Byurakan.",
+    title: {
+      en: "Seminar: New Results on Flare Star Activity Cycles",
+      am: "\u054d\u0565\u0574\u056b\u0576\u0561\u0580\u055d \u0562\u0578\u0581\u0561\u057e\u0561\u057c\u0578\u0582\u0574 \u0561\u057d\u057f\u0572\u0565\u0580\u056b \u0561\u056f\u057f\u056b\u057e\u0578\u0582\u0569\u0575\u0561\u0576 \u0581\u056b\u056f\u056c\u0565\u0580\u056b \u0576\u0578\u0580 \u0561\u0580\u0564\u0575\u0578\u0582\u0576\u0584\u0576\u0565\u0580",
+    },
+    description: {
+      en: "Dr. Hayk Harutyunyan presents new findings on the long-term activity cycles of UV Ceti-type flare stars observed at Byurakan.",
+      am: "\u0534-\u0580 \u0540\u0561\u0575\u056f \u0540\u0561\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0575\u0561\u0576\u0568 \u0576\u0565\u0580\u056f\u0561\u0575\u0561\u0581\u0576\u0578\u0582\u0574 \u0567 UV Ceti \u057f\u056b\u057a\u056b \u0562\u0578\u0581\u0561\u057e\u0561\u057c\u0578\u0582\u0574 \u0561\u057d\u057f\u0572\u0565\u0580\u056b \u0565\u0580\u056f\u0561\u0580\u0561\u056a\u0561\u0574\u056f\u0565\u057f \u0561\u056f\u057f\u056b\u057e\u0578\u0582\u0569\u0575\u0561\u0576 \u0581\u056b\u056f\u056c\u0565\u0580\u056b \u057e\u0565\u0580\u0561\u0562\u0565\u0580\u0575\u0561\u056c \u0576\u0578\u0580 \u057f\u057e\u0575\u0561\u056c\u0576\u0565\u0580\u0568, \u0564\u056b\u057f\u0561\u0580\u056f\u057e\u0561\u056e \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u0578\u0582\u0574:",
+    },
     date: "2026-04-25",
     time: "14:00 - 15:30",
-    location: "BAO Seminar Room",
+    location: {
+      en: "BAO Seminar Room",
+      am: "\u0532\u0531\u0539 \u057d\u0565\u0574\u056b\u0576\u0561\u0580\u0561\u0575\u056b\u0576 \u057d\u0565\u0576\u0575\u0561\u056f",
+    },
     type: "seminar",
   },
   {
     id: "ambartsumian-conference",
-    title: "Ambartsumian International Conference on Astrophysics",
-    description:
-      "Annual conference honoring the legacy of Viktor Ambartsumian, featuring invited talks on stellar physics, galaxy evolution, and cosmology.",
+    title: {
+      en: "Ambartsumian International Conference on Astrophysics",
+      am: "\u0540\u0561\u0574\u0562\u0561\u0580\u0571\u0578\u0582\u0574\u0575\u0561\u0576\u056b \u0561\u057d\u057f\u0572\u0561\u0586\u056b\u0566\u056b\u056f\u0561\u0575\u056b \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0563\u056b\u057f\u0561\u056a\u0578\u0572\u0578\u057e",
+    },
+    description: {
+      en: "Annual conference honoring the legacy of Viktor Ambartsumian, featuring invited talks on stellar physics, galaxy evolution, and cosmology.",
+      am: "\u054e\u056b\u056f\u057f\u0578\u0580 \u0540\u0561\u0574\u0562\u0561\u0580\u0571\u0578\u0582\u0574\u0575\u0561\u0576\u056b \u056a\u0561\u057c\u0561\u0576\u0563\u0578\u0582\u0569\u0575\u0561\u0576\u0568 \u0570\u0561\u0580\u0563\u0565\u056c\u0578\u0572 \u0561\u0574\u0565\u0576\u0561\u0574\u0575\u0561 \u0563\u056b\u057f\u0561\u056a\u0578\u0572\u0578\u057e\u055d \u0570\u0580\u0561\u057e\u056b\u0580\u0561\u0575\u056b\u0576 \u0564\u0561\u057d\u0561\u056d\u0578\u057d\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u0578\u057e \u0561\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0586\u056b\u0566\u056b\u056f\u0561\u0575\u056b, \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0567\u057e\u0578\u056c\u0578\u0582\u0581\u056b\u0561\u0575\u056b \u0587 \u057f\u056b\u0565\u0566\u0561\u0562\u0561\u0576\u0578\u0582\u0569\u0575\u0561\u0576 \u0569\u0565\u0574\u0561\u0576\u0565\u0580\u0578\u057e:",
+    },
     date: "2026-09-18",
     endDate: "2026-09-21",
     time: "09:00 - 18:00",
-    location: "NAS RA Conference Center, Yerevan",
+    location: {
+      en: "NAS RA Conference Center, Yerevan",
+      am: "\u0540\u0540 \u0533\u0531\u0531 \u0563\u056b\u057f\u0561\u056a\u0578\u0572\u0578\u057e\u0576\u0565\u0580\u056b \u056f\u0565\u0576\u057f\u0580\u0578\u0576, \u0535\u0580\u0587\u0561\u0576",
+    },
     type: "conference",
     registrationUrl: "#",
   },
   {
     id: "data-workshop",
-    title: "Hands-On Workshop: Astronomical Data Analysis with Python",
-    description:
-      "Practical workshop for students covering astronomical data reduction, photometry, spectroscopy analysis using Python and astropy.",
+    title: {
+      en: "Hands-On Workshop: Astronomical Data Analysis with Python",
+      am: "\u0533\u0578\u0580\u056e\u0576\u0561\u056f\u0561\u0576 \u057d\u0565\u0574\u056b\u0576\u0561\u0580\u055d \u0561\u057d\u057f\u0572\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u057f\u057e\u0575\u0561\u056c\u0576\u0565\u0580\u056b \u057e\u0565\u0580\u056c\u0578\u0582\u056e\u0578\u0582\u0569\u0575\u0578\u0582\u0576 Python-\u0578\u057e",
+    },
+    description: {
+      en: "Practical workshop for students covering astronomical data reduction, photometry, spectroscopy analysis using Python and astropy.",
+      am: "\u0533\u0578\u0580\u056e\u0576\u0561\u056f\u0561\u0576 \u057d\u0565\u0574\u056b\u0576\u0561\u0580 \u0578\u0582\u057d\u0561\u0576\u0578\u0572\u0576\u0565\u0580\u056b \u0570\u0561\u0574\u0561\u0580\u055d \u0568\u0576\u0564\u0563\u0580\u056f\u0565\u056c\u0578\u057e \u0561\u057d\u057f\u0572\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u057f\u057e\u0575\u0561\u056c\u0576\u0565\u0580\u056b \u0574\u0577\u0561\u056f\u0578\u0582\u0574, \u0586\u0578\u057f\u0578\u0574\u0565\u057f\u0580\u056b\u0561, \u057d\u057a\u0565\u056f\u057f\u0580\u0578\u057d\u056f\u0578\u057a\u056b\u0561\u0575\u056b \u057e\u0565\u0580\u056c\u0578\u0582\u056e\u0578\u0582\u0569\u0575\u0578\u0582\u0576 Python-\u056b \u0587 astropy-\u056b \u0585\u0563\u057f\u0561\u0563\u0578\u0580\u056e\u0574\u0561\u0574\u0562:",
+    },
     date: "2026-07-10",
     endDate: "2026-07-12",
     time: "10:00 - 16:00",
-    location: "BAO Computer Lab",
+    location: {
+      en: "BAO Computer Lab",
+      am: "\u0532\u0531\u0539 \u0570\u0561\u0574\u0561\u056f\u0561\u0580\u0563\u0579\u0561\u0575\u056b\u0576 \u056c\u0561\u0562\u0578\u0580\u0561\u057f\u0578\u0580\u056b\u0561",
+    },
     type: "workshop",
     registrationUrl: "#",
   },
 ];
+
+export function getEvents(locale: Locale): Event[] {
+  return data.map((event) => ({
+    id: event.id,
+    title: l(event.title, locale),
+    description: l(event.description, locale),
+    date: event.date,
+    endDate: event.endDate,
+    time: event.time,
+    location: l(event.location, locale),
+    type: event.type,
+    registrationUrl: event.registrationUrl,
+  }));
+}

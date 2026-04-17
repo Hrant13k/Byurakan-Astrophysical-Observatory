@@ -1,74 +1,143 @@
+import type { Locale } from "@/lib/i18n";
+import { l, type LocalizedString } from "@/lib/i18n";
+
+interface TimelineEntryData {
+  year: string;
+  title: LocalizedString;
+  description: LocalizedString;
+}
+
 export interface TimelineEntry {
   year: string;
   title: string;
   description: string;
 }
 
-export const timeline: TimelineEntry[] = [
+const data: TimelineEntryData[] = [
   {
     year: "1946",
-    title: "Foundation",
-    description:
-      "Byurakan Astrophysical Observatory was founded by the great astrophysicist Viktor Ambartsumian on the slopes of Mount Aragats at an altitude of 1,490 meters.",
+    title: { en: "Foundation", am: "\u0540\u056b\u0574\u0576\u0561\u0564\u0580\u0578\u0582\u0574" },
+    description: {
+      en: "Byurakan Astrophysical Observatory was founded by the great astrophysicist Viktor Ambartsumian on the slopes of Mount Aragats at an altitude of 1,490 meters.",
+      am: "\u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0561\u057d\u057f\u0572\u0561\u0586\u056b\u0566\u056b\u056f\u0561\u056f\u0561\u0576 \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u0568 \u0570\u056b\u0574\u0576\u0561\u0564\u0580\u057e\u0565\u0581 \u0574\u0565\u056e \u0561\u057d\u057f\u0572\u0561\u0586\u056b\u0566\u056b\u056f\u0578\u057d \u054e\u056b\u056f\u057f\u0578\u0580 \u0540\u0561\u0574\u0562\u0561\u0580\u0571\u0578\u0582\u0574\u0575\u0561\u0576\u056b \u056f\u0578\u0572\u0574\u056b\u0581\u055d \u0531\u0580\u0561\u0563\u0561\u056e\u056b \u056c\u0565\u057c\u0561\u0576 1490 \u0574\u0565\u057f\u0580 \u0562\u0561\u0580\u0571\u0580\u0578\u0582\u0569\u0575\u0561\u0574\u0562:",
+    },
   },
   {
     year: "1950",
-    title: "Stellar Associations Discovery",
-    description:
-      "Ambartsumian announced the discovery of stellar associations — loose groups of young stars — fundamentally changing our understanding of star formation.",
+    title: {
+      en: "Stellar Associations Discovery",
+      am: "\u0531\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0561\u057d\u0578\u0581\u056b\u0561\u0581\u056b\u0561\u0576\u0565\u0580\u056b \u0570\u0561\u0575\u057f\u0576\u0561\u0563\u0578\u0580\u056e\u0578\u0582\u0574",
+    },
+    description: {
+      en: "Ambartsumian announced the discovery of stellar associations \u2014 loose groups of young stars \u2014 fundamentally changing our understanding of star formation.",
+      am: "\u0540\u0561\u0574\u0562\u0561\u0580\u0571\u0578\u0582\u0574\u0575\u0561\u0576\u0568 \u0570\u0561\u0575\u057f\u0561\u0580\u0561\u0580\u0565\u0581 \u0561\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0561\u057d\u0578\u0581\u056b\u0561\u0581\u056b\u0561\u0576\u0565\u0580\u056b \u0563\u0578\u0575\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0568 \u2014 \u0565\u0580\u056b\u057f\u0561\u057d\u0561\u0580\u0564 \u0561\u057d\u057f\u0572\u0565\u0580\u056b \u0569\u0578\u0582\u0575\u056c \u056d\u0574\u0562\u0565\u0580 \u2014 \u0570\u056b\u0574\u0576\u0578\u057e\u056b\u0576 \u0583\u0578\u056d\u0565\u056c\u0578\u057e \u0561\u057d\u057f\u0572\u0561\u056e\u0561\u0563\u0574\u0561\u0576 \u0574\u0561\u057d\u056b\u0576 \u057a\u0561\u057f\u056f\u0565\u0580\u0561\u0581\u0578\u0582\u0574\u0576\u0565\u0580\u0568:",
+    },
   },
   {
     year: "1960",
-    title: "1m Schmidt Telescope",
-    description:
-      "The 1m Schmidt telescope was installed, becoming one of the largest Schmidt telescopes in the world and enabling the groundbreaking Markarian Survey.",
+    title: {
+      en: "1m Schmidt Telescope",
+      am: "1\u0574 \u0547\u0574\u056b\u0564\u057f\u056b \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f",
+    },
+    description: {
+      en: "The 1m Schmidt telescope was installed, becoming one of the largest Schmidt telescopes in the world and enabling the groundbreaking Markarian Survey.",
+      am: "\u054f\u0565\u0572\u0561\u0564\u0580\u057e\u0565\u0581 1\u0574 \u0547\u0574\u056b\u0564\u057f\u056b \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f\u0568\u055d \u0564\u0561\u057c\u0576\u0561\u056c\u0578\u057e \u0561\u0577\u056d\u0561\u0580\u0570\u056b \u0561\u0574\u0565\u0576\u0561\u0574\u0565\u056e\u0576\u0565\u0580\u056b\u0581 \u0574\u0565\u056f\u0568 \u0587 \u0570\u0576\u0561\u0580\u0561\u057e\u0578\u0580\u0565\u056c\u0578\u057e \u056c\u0565\u0563\u0565\u0576\u0564\u0561\u0580 \u0544\u0561\u0580\u056f\u0561\u0580\u0575\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u0568:",
+    },
   },
   {
     year: "1965",
-    title: "First Byurakan Survey Begins",
-    description:
-      "Beniamin Markarian began the First Byurakan Survey (FBS), a systematic search for UV-excess galaxies that would become one of the most influential extragalactic surveys.",
+    title: {
+      en: "First Byurakan Survey Begins",
+      am: "\u0531\u057c\u0561\u057b\u056b\u0576 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u056b \u057d\u056f\u056b\u0566\u0562",
+    },
+    description: {
+      en: "Beniamin Markarian began the First Byurakan Survey (FBS), a systematic search for UV-excess galaxies that would become one of the most influential extragalactic surveys.",
+      am: "\u0532\u0565\u0576\u056b\u0561\u0574\u056b\u0576 \u0544\u0561\u0580\u056f\u0561\u0580\u0575\u0561\u0576\u0568 \u057d\u056f\u057d\u0565\u0581 \u0531\u057c\u0561\u057b\u056b\u0576 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u0568 (FBS)\u055d \u0578\u0582\u056c\u057f\u0580\u0561\u0574\u0561\u0576\u0578\u0582\u0577\u0561\u0563\u0578\u0582\u0575\u0576 \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0570\u0561\u0574\u0561\u056f\u0561\u0580\u0563\u0561\u0575\u056b\u0576 \u0578\u0580\u0578\u0576\u0578\u0582\u0574\u0568:",
+    },
   },
   {
     year: "1976",
-    title: "2.6m Telescope Commissioned",
-    description:
-      "The 2.6m telescope — the largest in the Near East — was commissioned, significantly expanding the observatory's observational capabilities for spectroscopy and imaging.",
+    title: {
+      en: "2.6m Telescope Commissioned",
+      am: "2.6\u0574 \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f\u056b \u0563\u0578\u0580\u056e\u0561\u0580\u056f\u0578\u0582\u0574",
+    },
+    description: {
+      en: "The 2.6m telescope \u2014 the largest in the Near East \u2014 was commissioned, significantly expanding the observatory's observational capabilities for spectroscopy and imaging.",
+      am: "\u0533\u0578\u0580\u056e\u0561\u0580\u056f\u057e\u0565\u0581 2.6\u0574 \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f\u0568 \u2014 \u0544\u0565\u0580\u0571\u0561\u057e\u0578\u0580 \u0531\u0580\u0587\u0565\u056c\u0584\u056b \u0561\u0574\u0565\u0576\u0561\u0574\u0565\u056e\u0568 \u2014 \u0566\u0563\u0561\u056c\u056b\u0578\u0580\u0565\u0576 \u0568\u0576\u0564\u056c\u0561\u0575\u0576\u0565\u056c\u0578\u057e \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u056b \u0564\u056b\u057f\u0561\u0580\u056f\u0574\u0561\u0576 \u0570\u0576\u0561\u0580\u0561\u057e\u0578\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u0568:",
+    },
   },
   {
     year: "1978",
-    title: "Markarian Galaxies Catalog Published",
-    description:
-      "Publication of the complete Markarian catalog containing 1,515 UV-excess galaxies, a cornerstone resource for extragalactic astronomy that remains in active use today.",
+    title: {
+      en: "Markarian Galaxies Catalog Published",
+      am: "\u0544\u0561\u0580\u056f\u0561\u0580\u0575\u0561\u0576\u056b \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0581\u0578\u0582\u0581\u0561\u056f",
+    },
+    description: {
+      en: "Publication of the complete Markarian catalog containing 1,515 UV-excess galaxies, a cornerstone resource for extragalactic astronomy that remains in active use today.",
+      am: "\u0540\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u057e\u0565\u0581 \u0544\u0561\u0580\u056f\u0561\u0580\u0575\u0561\u0576\u056b \u0561\u0574\u0562\u0578\u0572\u057b\u0561\u056f\u0561\u0576 \u0581\u0578\u0582\u0581\u0561\u056f\u0568\u055d 1515 \u0578\u0582\u056c\u057f\u0580\u0561\u0574\u0561\u0576\u0578\u0582\u0577\u0561\u0563\u0578\u0582\u0575\u0576 \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u0578\u057e:",
+    },
   },
   {
     year: "1981",
-    title: "Second Byurakan Survey",
-    description:
-      "The Second Byurakan Survey (SBS) commenced, extending the search for active galaxies to fainter magnitudes and discovering hundreds of new AGN and emission-line galaxies.",
+    title: {
+      en: "Second Byurakan Survey",
+      am: "\u0535\u0580\u056f\u0580\u0578\u0580\u0564 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576",
+    },
+    description: {
+      en: "The Second Byurakan Survey (SBS) commenced, extending the search for active galaxies to fainter magnitudes and discovering hundreds of new AGN and emission-line galaxies.",
+      am: "\u054d\u056f\u057d\u057e\u0565\u0581 \u0535\u0580\u056f\u0580\u0578\u0580\u0564 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u0568 (SBS)\u055d \u0568\u0576\u0564\u056c\u0561\u0575\u0576\u0565\u056c\u0578\u057e \u0561\u056f\u057f\u056b\u057e \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0578\u0580\u0578\u0576\u0578\u0582\u0574\u0568 \u0561\u057e\u0565\u056c\u056b \u0569\u0578\u0582\u0575\u056c \u0574\u0565\u056e\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u0578\u057e:",
+    },
   },
   {
     year: "1996",
-    title: "50th Anniversary & International Recognition",
-    description:
-      "The observatory celebrated its 50th anniversary with an international conference. BAO was recognized as one of the world's leading centers for extragalactic research.",
+    title: {
+      en: "50th Anniversary & International Recognition",
+      am: "50-\u0561\u0574\u0575\u0561\u056f \u0587 \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0573\u0561\u0576\u0561\u0579\u0578\u0582\u0574",
+    },
+    description: {
+      en: "The observatory celebrated its 50th anniversary with an international conference. BAO was recognized as one of the world's leading centers for extragalactic research.",
+      am: "\u0531\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u0568 \u0576\u0577\u0565\u0581 50-\u0561\u0574\u0575\u0561\u056f\u0568 \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0563\u056b\u057f\u0561\u056a\u0578\u0572\u0578\u057e\u0578\u057e: \u0532\u0531\u0539-\u0568 \u0573\u0561\u0576\u0561\u0579\u057e\u0565\u0581 \u0578\u0580\u057a\u0565\u057d \u0561\u0580\u057f\u0561\u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0570\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u056b \u0561\u057c\u0561\u057b\u0561\u057f\u0561\u0580 \u056f\u0565\u0576\u057f\u0580\u0578\u0576\u0576\u0565\u0580\u056b\u0581 \u0574\u0565\u056f\u0568:",
+    },
   },
   {
     year: "2005",
-    title: "Digitized First Byurakan Survey",
-    description:
-      "The DFBS project digitized over 40,000 photographic plates from the First Byurakan Survey, creating an invaluable digital archive accessible to researchers worldwide.",
+    title: {
+      en: "Digitized First Byurakan Survey",
+      am: "\u0539\u057e\u0561\u0575\u0576\u0561\u0581\u057e\u0561\u056e \u0531\u057c\u0561\u057b\u056b\u0576 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576",
+    },
+    description: {
+      en: "The DFBS project digitized over 40,000 photographic plates from the First Byurakan Survey, creating an invaluable digital archive accessible to researchers worldwide.",
+      am: "DFBS \u0576\u0561\u056d\u0561\u0563\u056b\u056e\u0568 \u0569\u057e\u0561\u0575\u0576\u0561\u0581\u0580\u0565\u0581 \u0531\u057c\u0561\u057b\u056b\u0576 \u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u056b \u0561\u057e\u0565\u056c\u056b \u0584\u0561\u0576 40,000 \u056c\u0578\u0582\u057d\u0561\u0576\u056f\u0561\u0580\u0579\u0561\u0575\u056b\u0576 \u0569\u056b\u057e\u0565\u0580\u0568\u055d \u057d\u057f\u0565\u0572\u056e\u0565\u056c\u0578\u057e \u0561\u0576\u0563\u0576\u0561\u0570\u0561\u057f\u0565\u056c\u056b \u0569\u057e\u0561\u0575\u056b\u0576 \u0561\u0580\u056d\u056b\u057e:",
+    },
   },
   {
     year: "2011",
-    title: "UNESCO Tentative World Heritage List",
-    description:
-      "Byurakan Observatory was inscribed on Armenia's Tentative List for UNESCO World Heritage status, recognizing its exceptional cultural and scientific significance.",
+    title: {
+      en: "UNESCO Tentative World Heritage List",
+      am: "UNESCO-\u056b \u0576\u0561\u056d\u0576\u0561\u056f\u0561\u0576 \u0581\u0578\u0582\u0581\u0561\u056f",
+    },
+    description: {
+      en: "Byurakan Observatory was inscribed on Armenia's Tentative List for UNESCO World Heritage status, recognizing its exceptional cultural and scientific significance.",
+      am: "\u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u0568 \u0563\u0580\u0561\u0576\u0581\u057e\u0565\u0581 \u0540\u0561\u0575\u0561\u057d\u057f\u0561\u0576\u056b UNESCO-\u056b \u0540\u0561\u0574\u0561\u0577\u056d\u0561\u0580\u0570\u0561\u0575\u056b\u0576 \u056a\u0561\u057c\u0561\u0576\u0563\u0578\u0582\u0569\u0575\u0561\u0576 \u0576\u0561\u056d\u0576\u0561\u056f\u0561\u0576 \u0581\u0578\u0582\u0581\u0561\u056f\u0578\u0582\u0574:",
+    },
   },
   {
     year: "2023",
-    title: "Modern Era & International Collaboration",
-    description:
-      "Major telescope upgrades completed. New international collaboration agreements signed, opening access to world-class facilities and strengthening Armenia's role in global astronomy.",
+    title: {
+      en: "Modern Era & International Collaboration",
+      am: "\u0531\u0580\u0564\u056b \u0564\u0561\u0580\u0561\u0577\u0580\u057b\u0561\u0576 \u0587 \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0570\u0561\u0574\u0561\u0563\u0578\u0580\u056e\u0561\u056f\u0581\u0578\u0582\u0569\u0575\u0578\u0582\u0576",
+    },
+    description: {
+      en: "Major telescope upgrades completed. New international collaboration agreements signed, opening access to world-class facilities and strengthening Armenia's role in global astronomy.",
+      am: "\u0540\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f\u0576\u0565\u0580\u056b \u0570\u056b\u0574\u0576\u0561\u056f\u0561\u0576 \u0561\u0580\u0564\u056b\u0561\u056f\u0561\u0576\u0561\u0581\u0578\u0582\u0574 \u0561\u057e\u0561\u0580\u057f\u057e\u0565\u0581: \u0546\u0578\u0580 \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0570\u0561\u0574\u0561\u0563\u0578\u0580\u056e\u0561\u056f\u0581\u0578\u0582\u0569\u0575\u0561\u0576 \u057a\u0561\u0575\u0574\u0561\u0576\u0561\u0563\u0580\u0565\u0580 \u057d\u057f\u0578\u0580\u0561\u0563\u0580\u057e\u0565\u0581\u056b\u0576:",
+    },
   },
 ];
+
+export function getTimeline(locale: Locale): TimelineEntry[] {
+  return data.map((entry) => ({
+    year: entry.year,
+    title: l(entry.title, locale),
+    description: l(entry.description, locale),
+  }));
+}

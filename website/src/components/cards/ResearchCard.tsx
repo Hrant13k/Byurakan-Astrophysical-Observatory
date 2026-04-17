@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, BookOpen, ArrowUpRight } from "lucide-react";
 import type { ResearchArea } from "@/data/research";
+import { useLanguage } from "@/lib/i18n";
 
 export default function ResearchCard({
   area,
@@ -13,6 +14,8 @@ export default function ResearchCard({
   area: ResearchArea;
   index?: number;
 }) {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -32,11 +35,11 @@ export default function ResearchCard({
         <div className="absolute bottom-4 left-6 right-6 flex items-center gap-5 text-[11px] tracking-wide uppercase text-white/70">
           <span className="flex items-center gap-1.5">
             <Users className="h-3 w-3" />
-            {area.researchers} researchers
+            {area.researchers} {t.common.researchers}
           </span>
           <span className="flex items-center gap-1.5">
             <BookOpen className="h-3 w-3" />
-            {area.publications}+ papers
+            {area.publications}+ {t.common.papers}
           </span>
         </div>
       </div>
@@ -51,7 +54,7 @@ export default function ResearchCard({
           href={`/research#${area.id}`}
           className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline underline-offset-2"
         >
-          Explore research
+          {t.common.exploreResearch}
           <ArrowUpRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </Link>
       </div>

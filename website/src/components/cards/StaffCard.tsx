@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Mail, BookOpen, User } from "lucide-react";
 import type { StaffMember } from "@/data/staff";
+import { useLanguage } from "@/lib/i18n";
 
 export default function StaffCard({
   member,
@@ -12,6 +13,8 @@ export default function StaffCard({
   member: StaffMember;
   index?: number;
 }) {
+  const { t } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -47,14 +50,14 @@ export default function StaffCard({
       <div className="mt-5 pt-4 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
         <span className="flex items-center gap-1.5">
           <BookOpen className="h-3.5 w-3.5" />
-          {member.publications} papers
+          {member.publications} {t.common.papers}
         </span>
         <a
           href={`mailto:${member.email}`}
           className="flex items-center gap-1.5 text-primary hover:underline underline-offset-2"
         >
           <Mail className="h-3.5 w-3.5" />
-          Contact
+          {t.common.contact}
         </a>
       </div>
     </motion.div>

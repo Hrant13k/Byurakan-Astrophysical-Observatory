@@ -1,3 +1,17 @@
+import type { Locale } from "@/lib/i18n";
+import { l, type LocalizedString } from "@/lib/i18n";
+
+interface StaffMemberData {
+  id: string;
+  name: string;
+  title: LocalizedString;
+  department: LocalizedString;
+  specialization: LocalizedString;
+  email: string;
+  bio: LocalizedString;
+  publications: number;
+}
+
 export interface StaffMember {
   id: string;
   name: string;
@@ -9,95 +23,174 @@ export interface StaffMember {
   publications: number;
 }
 
-export const departments = [
-  "All",
-  "Stellar Physics",
-  "Extragalactic Astronomy",
-  "Cosmology",
-  "Solar Physics",
-  "Instrumentation",
-  "Administration",
-] as const;
+interface DepartmentData {
+  label: LocalizedString;
+}
 
-export const staff: StaffMember[] = [
+const departmentData: DepartmentData[] = [
+  { label: { en: "All", am: "\u0532\u0578\u056c\u0578\u0580\u0568" } },
+  { label: { en: "Stellar Physics", am: "\u0531\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0586\u056b\u0566\u056b\u056f\u0561" } },
+  { label: { en: "Extragalactic Astronomy", am: "\u0531\u0580\u057f\u0561\u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0561\u057d\u057f\u0572\u0561\u0563\u056b\u057f\u0578\u0582\u0569\u0575\u0578\u0582\u0576" } },
+  { label: { en: "Cosmology", am: "\u054f\u056b\u0565\u0566\u0561\u0562\u0561\u0576\u0578\u0582\u0569\u0575\u0578\u0582\u0576" } },
+  { label: { en: "Solar Physics", am: "\u0531\u0580\u0565\u0563\u0561\u056f\u056b \u0586\u056b\u0566\u056b\u056f\u0561" } },
+  { label: { en: "Instrumentation", am: "\u0533\u0578\u0580\u056e\u056b\u0584\u0561\u0577\u056b\u0576\u0578\u0582\u0569\u0575\u0578\u0582\u0576" } },
+  { label: { en: "Administration", am: "\u054e\u0561\u0580\u0579\u0561\u056f\u0561\u0576" } },
+];
+
+const departmentMap: Record<string, LocalizedString> = {
+  All: { en: "All", am: "\u0532\u0578\u056c\u0578\u0580\u0568" },
+  "Stellar Physics": { en: "Stellar Physics", am: "\u0531\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0586\u056b\u0566\u056b\u056f\u0561" },
+  "Extragalactic Astronomy": { en: "Extragalactic Astronomy", am: "\u0531\u0580\u057f\u0561\u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0561\u057d\u057f\u0572\u0561\u0563\u056b\u057f\u0578\u0582\u0569\u0575\u0578\u0582\u0576" },
+  Cosmology: { en: "Cosmology", am: "\u054f\u056b\u0565\u0566\u0561\u0562\u0561\u0576\u0578\u0582\u0569\u0575\u0578\u0582\u0576" },
+  "Solar Physics": { en: "Solar Physics", am: "\u0531\u0580\u0565\u0563\u0561\u056f\u056b \u0586\u056b\u0566\u056b\u056f\u0561" },
+  Instrumentation: { en: "Instrumentation", am: "\u0533\u0578\u0580\u056e\u056b\u0584\u0561\u0577\u056b\u0576\u0578\u0582\u0569\u0575\u0578\u0582\u0576" },
+  Administration: { en: "Administration", am: "\u054e\u0561\u0580\u0579\u0561\u056f\u0561\u0576" },
+};
+
+const data: StaffMemberData[] = [
   {
     id: "areg-mickaelian",
     name: "Dr. Areg Mickaelian",
-    title: "Director",
-    department: "Administration",
-    specialization: "Active Galaxies, Astronomical Surveys",
+    title: { en: "Director", am: "\u054f\u0576\u0585\u0580\u0565\u0576" },
+    department: departmentMap["Administration"],
+    specialization: {
+      en: "Active Galaxies, Astronomical Surveys",
+      am: "\u0531\u056f\u057f\u056b\u057e \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580, \u0561\u057d\u057f\u0572\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u0576\u0565\u0580",
+    },
     email: "aregmick@bao.sci.am",
-    bio: "Director of the Byurakan Astrophysical Observatory since 2021. Leading researcher in active galaxies and multi-wavelength astronomical surveys with over 300 publications.",
+    bio: {
+      en: "Director of the Byurakan Astrophysical Observatory since 2021. Leading researcher in active galaxies and multi-wavelength astronomical surveys with over 300 publications.",
+      am: "\u0532\u0575\u0578\u0582\u0580\u0561\u056f\u0561\u0576\u056b \u0561\u057d\u057f\u0572\u0561\u0586\u056b\u0566\u056b\u056f\u0561\u056f\u0561\u0576 \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u056b \u057f\u0576\u0585\u0580\u0565\u0576\u0568 2021 \u0569\u057e\u0561\u056f\u0561\u0576\u056b\u0581: \u0531\u056f\u057f\u056b\u057e \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0587 \u0562\u0561\u0566\u0574\u0561\u0561\u056c\u056b\u0584\u0561\u0575\u056b\u0576 \u0561\u057d\u057f\u0572\u0561\u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u0576\u0565\u0580\u056b \u0561\u057c\u0561\u057b\u0561\u057f\u0561\u0580 \u0570\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0572\u055d \u0561\u057e\u0565\u056c\u056b \u0584\u0561\u0576 300 \u0570\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u0578\u0582\u0574\u0576\u0565\u0580\u0578\u057e:",
+    },
     publications: 312,
   },
   {
     id: "hayk-harutyunyan",
     name: "Dr. Hayk Harutyunyan",
-    title: "Senior Researcher",
-    department: "Stellar Physics",
-    specialization: "Stellar Evolution, Variable Stars",
+    title: { en: "Senior Researcher", am: "\u0531\u057e\u0561\u0563 \u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Stellar Physics"],
+    specialization: {
+      en: "Stellar Evolution, Variable Stars",
+      am: "\u0531\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0567\u057e\u0578\u056c\u0578\u0582\u0581\u056b\u0561, \u0583\u0578\u0583\u0578\u056d\u0561\u056f\u0561\u0576 \u0561\u057d\u057f\u0572\u0565\u0580",
+    },
     email: "hayk@bao.sci.am",
-    bio: "Expert in stellar evolution and variable stars. Leading the observatory's spectroscopic survey program and mentoring the next generation of Armenian astronomers.",
+    bio: {
+      en: "Expert in stellar evolution and variable stars. Leading the observatory's spectroscopic survey program and mentoring the next generation of Armenian astronomers.",
+      am: "\u0531\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0567\u057e\u0578\u056c\u0578\u0582\u0581\u056b\u0561\u0575\u056b \u0587 \u0583\u0578\u0583\u0578\u056d\u0561\u056f\u0561\u0576 \u0561\u057d\u057f\u0572\u0565\u0580\u056b \u0583\u0578\u0580\u0571\u0561\u0563\u0565\u057f: \u0542\u0565\u056f\u0561\u057e\u0561\u0580\u0578\u0582\u0574 \u0567 \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u056b \u057d\u057a\u0565\u056f\u057f\u0580\u0578\u057d\u056f\u0578\u057a\u056b\u056f \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u056b \u056e\u0580\u0561\u0563\u056b\u0580\u0568 \u0587 \u057d\u057a\u0561\u057d\u0561\u0580\u056f\u0578\u0582\u0574 \u0567 \u0570\u0561\u0575 \u0561\u057d\u057f\u0572\u0561\u0563\u0565\u057f\u0576\u0565\u0580\u056b \u0576\u0578\u0580 \u057d\u0565\u0580\u0576\u0564\u056b\u0576:",
+    },
     publications: 187,
   },
   {
     id: "elena-nikoghosyan",
     name: "Dr. Elena Nikoghosyan",
-    title: "Leading Researcher",
-    department: "Stellar Physics",
-    specialization: "Planetary Nebulae, Emission-Line Stars",
+    title: { en: "Leading Researcher", am: "\u0531\u057c\u0561\u057b\u0561\u057f\u0561\u0580 \u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Stellar Physics"],
+    specialization: {
+      en: "Planetary Nebulae, Emission-Line Stars",
+      am: "\u0544\u0578\u056c\u0578\u0580\u0561\u056f\u0561\u0575\u056b\u0576 \u0574\u056b\u0563\u0561\u0574\u0561\u056e\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580, \u0567\u0574\u056b\u057d\u056b\u0578\u0576 \u0563\u056e\u0565\u0580\u0578\u057e \u0561\u057d\u057f\u0572\u0565\u0580",
+    },
     email: "elena@bao.sci.am",
-    bio: "Leading researcher specializing in planetary nebulae and emission-line stars. Has contributed significantly to the understanding of late stages of stellar evolution.",
+    bio: {
+      en: "Leading researcher specializing in planetary nebulae and emission-line stars. Has contributed significantly to the understanding of late stages of stellar evolution.",
+      am: "\u0531\u057c\u0561\u057b\u0561\u057f\u0561\u0580 \u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572\u055d \u0574\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u0581\u057e\u0561\u056e \u0574\u0578\u056c\u0578\u0580\u0561\u056f\u0561\u0575\u056b\u0576 \u0574\u056b\u0563\u0561\u0574\u0561\u056e\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u056b \u0587 \u0567\u0574\u056b\u057d\u056b\u0578\u0576 \u0563\u056e\u0565\u0580\u0578\u057e \u0561\u057d\u057f\u0572\u0565\u0580\u056b \u0578\u056c\u0578\u0580\u057f\u0578\u0582\u0574: \u0536\u0563\u0561\u056c\u056b \u0576\u0565\u0580\u0564\u0580\u0578\u0582\u0574 \u0567 \u0578\u0582\u0576\u0565\u0581\u0565\u056c \u0561\u057d\u057f\u0572\u0561\u0575\u056b\u0576 \u0567\u057e\u0578\u056c\u0578\u0582\u0581\u056b\u0561\u0575\u056b \u0578\u0582\u0577 \u0583\u0578\u0582\u056c\u0565\u0580\u056b \u0568\u0576\u056f\u0561\u056c\u0574\u0561\u0576 \u0574\u0565\u057b:",
+    },
     publications: 145,
   },
   {
     id: "tigran-magakian",
     name: "Dr. Tigran Magakian",
-    title: "Senior Researcher",
-    department: "Stellar Physics",
-    specialization: "Star Formation, Herbig-Haro Objects",
+    title: { en: "Senior Researcher", am: "\u0531\u057e\u0561\u0563 \u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Stellar Physics"],
+    specialization: {
+      en: "Star Formation, Herbig-Haro Objects",
+      am: "\u0531\u057d\u057f\u0572\u0561\u056e\u0561\u0563\u0578\u0582\u0574, \u0540\u0565\u0580\u0562\u056b\u0563-\u0540\u0561\u0580\u0578 \u0585\u0562\u0575\u0565\u056f\u057f\u0576\u0565\u0580",
+    },
     email: "tigran@bao.sci.am",
-    bio: "Renowned expert in star formation regions and Herbig-Haro objects. Discovered numerous new HH objects in the Milky Way.",
+    bio: {
+      en: "Renowned expert in star formation regions and Herbig-Haro objects. Discovered numerous new HH objects in the Milky Way.",
+      am: "\u0531\u057d\u057f\u0572\u0561\u056e\u0561\u0563\u0574\u0561\u0576 \u0577\u0580\u057b\u0561\u0576\u0576\u0565\u0580\u056b \u0587 \u0540\u0565\u0580\u0562\u056b\u0563-\u0540\u0561\u0580\u0578 \u0585\u0562\u0575\u0565\u056f\u057f\u0576\u0565\u0580\u056b \u0573\u0561\u0576\u0561\u0579\u057e\u0561\u056e \u0583\u0578\u0580\u0571\u0561\u0563\u0565\u057f: \u0540\u0561\u0575\u057f\u0576\u0561\u0562\u0565\u0580\u0565\u056c \u0567 \u0562\u0561\u0566\u0574\u0561\u0569\u056b\u057e \u0576\u0578\u0580 HH \u0585\u0562\u0575\u0565\u056f\u057f\u0576\u0565\u0580 \u0543\u0561\u056e\u0561\u056e \u0543\u0561\u0576\u0561\u057a\u0561\u0580\u0570\u0578\u0582\u0574:",
+    },
     publications: 198,
   },
   {
     id: "vahram-chavushyan",
     name: "Dr. Vahram Chavushyan",
-    title: "Researcher",
-    department: "Extragalactic Astronomy",
-    specialization: "Active Galactic Nuclei, Quasars",
+    title: { en: "Researcher", am: "\u0533\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Extragalactic Astronomy"],
+    specialization: {
+      en: "Active Galactic Nuclei, Quasars",
+      am: "\u0531\u056f\u057f\u056b\u057e \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0574\u056b\u057b\u0578\u0582\u056f\u0576\u0565\u0580, \u0584\u057e\u0561\u0566\u0561\u0580\u0576\u0565\u0580",
+    },
     email: "vahram@bao.sci.am",
-    bio: "Specializes in active galactic nuclei and quasar spectroscopy. Collaborates with international teams on multi-wavelength AGN surveys.",
+    bio: {
+      en: "Specializes in active galactic nuclei and quasar spectroscopy. Collaborates with international teams on multi-wavelength AGN surveys.",
+      am: "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0561\u0581\u057e\u0561\u056e \u0567 \u0561\u056f\u057f\u056b\u057e \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u056f\u0561\u0576 \u0574\u056b\u057b\u0578\u0582\u056f\u0576\u0565\u0580\u056b \u0587 \u0584\u057e\u0561\u0566\u0561\u0580\u0576\u0565\u0580\u056b \u057d\u057a\u0565\u056f\u057f\u0580\u0578\u057d\u056f\u0578\u057a\u056b\u0561\u0575\u056b \u0578\u056c\u0578\u0580\u057f\u0578\u0582\u0574: \u0540\u0561\u0574\u0561\u0563\u0578\u0580\u056e\u0561\u056f\u0581\u0578\u0582\u0574 \u0567 \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u0569\u056b\u0574\u0565\u0580\u056b \u0570\u0565\u057f \u0562\u0561\u0566\u0574\u0561\u0561\u056c\u056b\u0584\u0561\u0575\u056b\u0576 AGN \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u0576\u0565\u0580\u056b \u0577\u0580\u057b\u0561\u0576\u0561\u056f\u0576\u0565\u0580\u0578\u0582\u0574:",
+    },
     publications: 156,
   },
   {
     id: "gohar-harutyunyan",
     name: "Dr. Gohar Harutyunyan",
-    title: "Researcher",
-    department: "Cosmology",
-    specialization: "Dark Energy, Large-Scale Structure",
+    title: { en: "Researcher", am: "\u0533\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Cosmology"],
+    specialization: {
+      en: "Dark Energy, Large-Scale Structure",
+      am: "\u0544\u0578\u0582\u0569 \u0567\u0576\u0565\u0580\u0563\u056b\u0561, \u057f\u056b\u0565\u0566\u0561\u0574\u0561\u057d\u0577\u057f\u0561\u0562 \u056f\u0561\u057c\u0578\u0582\u0581\u057e\u0561\u056e\u0584",
+    },
     email: "gohar@bao.sci.am",
-    bio: "Researches dark energy and the large-scale structure of the universe. Active participant in several international cosmological survey projects.",
+    bio: {
+      en: "Researches dark energy and the large-scale structure of the universe. Active participant in several international cosmological survey projects.",
+      am: "\u0540\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0582\u0574 \u0567 \u0574\u0578\u0582\u0569 \u0567\u0576\u0565\u0580\u0563\u056b\u0561\u0576 \u0587 \u057f\u056b\u0565\u0566\u0565\u0580\u0584\u056b \u057f\u056b\u0565\u0566\u0561\u0574\u0561\u057d\u0577\u057f\u0561\u0562 \u056f\u0561\u057c\u0578\u0582\u0581\u057e\u0561\u056e\u0584\u0568: \u0531\u056f\u057f\u056b\u057e \u0574\u0561\u057d\u0576\u0561\u056f\u056b\u0581 \u0567 \u0574\u056b \u0584\u0561\u0576\u056b \u0574\u056b\u057b\u0561\u0566\u0563\u0561\u0575\u056b\u0576 \u057f\u056b\u0565\u0566\u0561\u0562\u0561\u0576\u0561\u056f\u0561\u0576 \u0570\u0561\u0574\u0561\u056c\u057d\u0561\u0580\u0561\u0576\u056b \u0576\u0561\u056d\u0561\u0563\u056e\u0565\u0580\u056b:",
+    },
     publications: 92,
   },
   {
     id: "hovhannes-pikichyan",
     name: "Dr. Hovhannes Pikichyan",
-    title: "Senior Researcher",
-    department: "Solar Physics",
-    specialization: "Solar Activity, Space Weather",
+    title: { en: "Senior Researcher", am: "\u0531\u057e\u0561\u0563 \u0563\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Solar Physics"],
+    specialization: {
+      en: "Solar Activity, Space Weather",
+      am: "\u0531\u0580\u0565\u0563\u0561\u056f\u056b \u0561\u056f\u057f\u056b\u057e\u0578\u0582\u0569\u0575\u0578\u0582\u0576, \u057f\u056b\u0565\u0566\u0561\u056f\u0561\u0576 \u0565\u0572\u0561\u0576\u0561\u056f",
+    },
     email: "hovhannes@bao.sci.am",
-    bio: "Leading expert in solar activity cycles and space weather prediction. Maintains the observatory's solar observation program.",
+    bio: {
+      en: "Leading expert in solar activity cycles and space weather prediction. Maintains the observatory's solar observation program.",
+      am: "\u0531\u0580\u0565\u0563\u0561\u056f\u056b \u0561\u056f\u057f\u056b\u057e\u0578\u0582\u0569\u0575\u0561\u0576 \u0581\u056b\u056f\u056c\u0565\u0580\u056b \u0587 \u057f\u056b\u0565\u0566\u0561\u056f\u0561\u0576 \u0565\u0572\u0561\u0576\u0561\u056f\u056b \u056f\u0561\u0576\u056d\u0561\u057f\u0565\u057d\u0574\u0561\u0576 \u0561\u057c\u0561\u057b\u0561\u057f\u0561\u0580 \u0583\u0578\u0580\u0571\u0561\u0563\u0565\u057f: \u054e\u0561\u0580\u0578\u0582\u0574 \u0567 \u0561\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u056b \u0561\u0580\u0565\u0563\u0561\u056f\u056b \u0564\u056b\u057f\u0561\u0580\u056f\u0574\u0561\u0576 \u056e\u0580\u0561\u0563\u056b\u0580\u0568:",
+    },
     publications: 134,
   },
   {
     id: "sona-farmanyan",
     name: "Dr. Sona Farmanyan",
-    title: "Researcher",
-    department: "Extragalactic Astronomy",
-    specialization: "Galaxy Morphology, Photometry",
+    title: { en: "Researcher", am: "\u0533\u056b\u057f\u0561\u056f\u0561\u0576 \u0561\u0577\u056d\u0561\u057f\u0578\u0572" },
+    department: departmentMap["Extragalactic Astronomy"],
+    specialization: {
+      en: "Galaxy Morphology, Photometry",
+      am: "\u0533\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0574\u0578\u0580\u0586\u0578\u056c\u0578\u0563\u056b\u0561, \u0586\u0578\u057f\u0578\u0574\u0565\u057f\u0580\u056b\u0561",
+    },
     email: "sona@bao.sci.am",
-    bio: "Focuses on galaxy morphology and surface photometry. Contributed to several catalogs of galaxies and their classification.",
+    bio: {
+      en: "Focuses on galaxy morphology and surface photometry. Contributed to several catalogs of galaxies and their classification.",
+      am: "\u0534\u056b\u057f\u0561\u0580\u056f\u0578\u0582\u0574\u0576\u0565\u0580\u0568 \u056f\u0565\u0576\u057f\u0580\u0578\u0576\u0561\u0581\u057e\u0561\u056e \u0565\u0576 \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0574\u0578\u0580\u0586\u0578\u056c\u0578\u0563\u056b\u0561\u0575\u056b \u0587 \u0574\u0561\u056f\u0565\u0580\u0587\u0578\u0582\u0575\u0569\u0561\u0575\u056b\u0576 \u0586\u0578\u057f\u0578\u0574\u0565\u057f\u0580\u056b\u0561\u0575\u056b \u057e\u0580\u0561: \u0546\u0565\u0580\u0564\u0580\u0578\u0582\u0574 \u0567 \u0578\u0582\u0576\u0565\u0581\u0565\u056c \u0563\u0561\u056c\u0561\u056f\u057f\u056b\u056f\u0561\u0576\u0565\u0580\u056b \u0574\u056b \u0584\u0561\u0576\u056b \u0581\u0578\u0582\u0581\u0561\u056f\u0576\u0565\u0580\u056b \u0587 \u0564\u0580\u0561\u0576\u0581 \u0564\u0561\u057d\u0561\u056f\u0561\u0580\u0563\u0574\u0561\u0576 \u0574\u0565\u057b:",
+    },
     publications: 78,
   },
 ];
+
+export function getDepartments(locale: Locale): string[] {
+  return departmentData.map((d) => l(d.label, locale));
+}
+
+export function getStaff(locale: Locale): StaffMember[] {
+  return data.map((member) => ({
+    id: member.id,
+    name: member.name,
+    title: l(member.title, locale),
+    department: l(member.department, locale),
+    specialization: l(member.specialization, locale),
+    email: member.email,
+    bio: l(member.bio, locale),
+    publications: member.publications,
+  }));
+}

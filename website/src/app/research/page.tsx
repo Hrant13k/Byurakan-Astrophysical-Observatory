@@ -5,16 +5,20 @@ import { motion } from "framer-motion";
 import { BookOpen, Users, TrendingUp } from "lucide-react";
 import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { researchAreas } from "@/data/research";
+import { getResearchAreas } from "@/data/research";
+import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function ResearchPage() {
+  const { t, locale } = useLanguage();
+  const researchAreas = getResearchAreas(locale);
+
   return (
     <>
       <PageHeader
-        title="Research"
-        description="Explore our research programs spanning stellar physics, extragalactic astronomy, cosmology, and systematic sky surveys."
+        title={t.pages.researchTitle}
+        description={t.pages.researchDesc}
       />
 
       {/* Stats */}
@@ -22,9 +26,9 @@ export default function ResearchPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-3 gap-6">
             {[
-              { icon: BookOpen, value: "3,200+", label: "Published Papers" },
-              { icon: Users, value: "35+", label: "Active Researchers" },
-              { icon: TrendingUp, value: "4", label: "Research Areas" },
+              { icon: BookOpen, value: "3,200+", label: t.common.publishedPapers },
+              { icon: Users, value: "35+", label: t.common.activeResearchers },
+              { icon: TrendingUp, value: "4", label: t.common.researchAreasCount },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -74,7 +78,7 @@ export default function ResearchPage() {
 
               <div className={index % 2 !== 0 ? "lg:order-1" : ""}>
                 <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-primary mb-3">
-                  {area.researchers} researchers &middot; {area.publications}+ papers
+                  {area.researchers} {t.common.researchers} &middot; {area.publications}+ {t.common.papers}
                 </p>
                 <h2 className="text-3xl font-bold tracking-tight text-foreground">
                   {area.title}
@@ -110,9 +114,9 @@ export default function ResearchPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-muted/30 pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <SectionHeading
-            label="Heritage"
-            title="The Markarian Legacy"
-            subtitle="A cornerstone of extragalactic astronomy"
+            label={t.markarian.label}
+            title={t.markarian.title}
+            subtitle={t.markarian.subtitle}
           />
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -123,26 +127,16 @@ export default function ResearchPage() {
           >
             <div className="rounded-2xl border border-border/60 bg-card p-8 sm:p-10">
               <p className="text-[15px] text-muted-foreground leading-[1.75]">
-                The First Byurakan Survey (FBS), also known as the Markarian
-                Survey, was a pioneering systematic search for galaxies with
-                strong ultraviolet excess. Conducted by Beniamin Markarian
-                between 1965 and 1980 using the 1m Schmidt telescope, the
-                survey identified 1,515 UV-excess galaxies &mdash; now known as
-                Markarian galaxies.
+                {t.markarian.p1}
               </p>
               <p className="mt-5 text-[15px] text-muted-foreground leading-[1.75]">
-                This catalog became one of the most widely used resources in
-                extragalactic astronomy, fundamentally advancing our
-                understanding of active galactic nuclei, Seyfert galaxies, and
-                starburst galaxies. The survey&apos;s photographic plates have since
-                been digitized as the DFBS project, creating an invaluable
-                digital archive for modern researchers.
+                {t.markarian.p2}
               </p>
               <div className="mt-8 grid grid-cols-3 gap-6">
                 {[
-                  { value: "1,515", label: "Markarian Galaxies" },
-                  { value: "17,000+", label: "sq. deg. surveyed" },
-                  { value: "40,000+", label: "Plates digitized" },
+                  { value: "1,515", label: t.markarian.galaxies },
+                  { value: "17,000+", label: t.markarian.surveyed },
+                  { value: "40,000+", label: t.markarian.digitized },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center py-4 rounded-xl bg-muted/50">
                     <p className="text-2xl font-bold tracking-tight text-primary">

@@ -6,11 +6,12 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/shared/SectionHeading";
 import NewsCard from "@/components/cards/NewsCard";
-import { news } from "@/data/news";
+import { getNews } from "@/data/news";
 import { useLanguage } from "@/lib/i18n";
 
 export default function LatestNews() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
+  const news = getNews(locale);
   return (
     <section className="relative py-28">
       <div className="section-divider absolute top-0 left-0 right-0" />

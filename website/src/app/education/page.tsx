@@ -7,16 +7,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { programs } from "@/data/education";
+import { getPrograms } from "@/data/education";
+import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function EducationPage() {
+  const { t, locale } = useLanguage();
+  const programs = getPrograms(locale);
+
   return (
     <>
       <PageHeader
-        title="Education & Training"
-        description="Programs for students, researchers, and the public — fostering the next generation of astronomical discovery."
+        title={t.pages.educationTitle}
+        description={t.pages.educationDesc}
       />
 
       {/* Programs */}
@@ -69,7 +73,7 @@ export default function EducationPage() {
               </div>
 
               <Button className="mt-7" variant="outline">
-                Learn More
+                {t.cta.learnMore}
               </Button>
             </motion.div>
           ))}
@@ -103,7 +107,7 @@ export default function EducationPage() {
               transition={{ duration: 0.6, delay: 0.15, ease }}
             >
               <Badge className="mb-5 text-[10px] tracking-wider uppercase">
-                Featured Program
+                {t.common.featuredProgram}
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-foreground">
                 Byurakan International Summer School
@@ -117,9 +121,9 @@ export default function EducationPage() {
               </p>
               <div className="mt-8 grid grid-cols-3 gap-4">
                 {[
-                  { value: "12", label: "Editions" },
-                  { value: "20+", label: "Countries" },
-                  { value: "500+", label: "Alumni" },
+                  { value: "12", label: t.common.editions },
+                  { value: "20+", label: t.common.countries },
+                  { value: "500+", label: t.common.alumni },
                 ].map((stat) => (
                   <div
                     key={stat.label}
@@ -134,7 +138,7 @@ export default function EducationPage() {
                   </div>
                 ))}
               </div>
-              <Button className="mt-8">Apply for Next School</Button>
+              <Button className="mt-8">{t.common.applyNext}</Button>
             </motion.div>
           </div>
         </div>

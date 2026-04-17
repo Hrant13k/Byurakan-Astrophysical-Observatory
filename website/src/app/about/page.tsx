@@ -5,43 +5,43 @@ import { motion } from "framer-motion";
 import { Telescope, Mountain, Database, Award } from "lucide-react";
 import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
-import { timeline } from "@/data/timeline";
-
-const facilities = [
-  {
-    icon: Telescope,
-    title: "2.6m Cassegrain Telescope",
-    description:
-      "The largest telescope in the Near East, commissioned in 1976. Equipped with modern CCD cameras and spectrographs for cutting-edge research.",
-  },
-  {
-    icon: Mountain,
-    title: "1m Schmidt Telescope",
-    description:
-      "One of the world's largest Schmidt telescopes. The instrument that made the legendary Markarian Survey possible.",
-  },
-  {
-    icon: Database,
-    title: "Digitized Plate Archive",
-    description:
-      "Over 40,000 photographic plates from decades of observations, digitized and accessible for modern research.",
-  },
-  {
-    icon: Award,
-    title: "UNESCO Heritage Candidate",
-    description:
-      "Inscribed on Armenia's Tentative List for UNESCO World Heritage status, recognizing its exceptional scientific and cultural value.",
-  },
-];
+import { getTimeline } from "@/data/timeline";
+import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function AboutPage() {
+  const { t, locale } = useLanguage();
+  const timeline = getTimeline(locale);
+
+  const facilities = [
+    {
+      icon: Telescope,
+      title: t.facilities.telescope26,
+      description: t.facilities.telescope26Desc,
+    },
+    {
+      icon: Mountain,
+      title: t.facilities.schmidt,
+      description: t.facilities.schmidtDesc,
+    },
+    {
+      icon: Database,
+      title: t.facilities.archive,
+      description: t.facilities.archiveDesc,
+    },
+    {
+      icon: Award,
+      title: t.facilities.unesco,
+      description: t.facilities.unescoDesc,
+    },
+  ];
+
   return (
     <>
       <PageHeader
-        title="About the Observatory"
-        description="Discover the history, mission, and facilities of one of the world's leading astrophysical research centers."
+        title={t.pages.aboutTitle}
+        description={t.pages.aboutDesc}
       />
 
       {/* Founder Section */}
@@ -55,25 +55,14 @@ export default function AboutPage() {
               transition={{ duration: 0.6, ease }}
             >
               <SectionHeading
-                label="The Founder"
-                title="Viktor Ambartsumian"
-                subtitle="One of the greatest astrophysicists of the 20th century"
+                label={t.about.founderLabel}
+                title={t.about.founderName}
+                subtitle={t.about.founderSubtitle}
                 centered={false}
               />
               <div className="mt-8 space-y-5 text-[15px] text-muted-foreground leading-[1.75]">
-                <p>
-                  Viktor Amazaspovich Ambartsumian (1908&ndash;1996) founded
-                  the Byurakan Astrophysical Observatory in 1946 and served as its
-                  director for over four decades. His discovery of stellar
-                  associations revolutionized our understanding of star formation.
-                </p>
-                <p>
-                  President of the International Astronomical Union
-                  (1961&ndash;1964) and a member of numerous national academies
-                  worldwide, Ambartsumian established Byurakan as a world-class
-                  center for astrophysical research and a symbol of Armenian
-                  scientific achievement.
-                </p>
+                <p>{t.about.founderP1}</p>
+                <p>{t.about.founderP2}</p>
               </div>
             </motion.div>
 
@@ -147,26 +136,14 @@ export default function AboutPage() {
               className="order-1 lg:order-2"
             >
               <SectionHeading
-                label="Our Purpose"
-                title="Mission & Vision"
-                subtitle="Advancing humanity's understanding of the cosmos"
+                label={t.about.missionLabel}
+                title={t.about.missionTitle}
+                subtitle={t.about.missionSubtitle}
                 centered={false}
               />
               <div className="mt-8 space-y-5 text-[15px] text-muted-foreground leading-[1.75]">
-                <p>
-                  The NAS RA V. Ambartsumian Byurakan Astrophysical Observatory
-                  is dedicated to fundamental research in stellar and
-                  extragalactic astrophysics, training the next generation of
-                  scientists, and sharing the wonder of the universe with the
-                  public.
-                </p>
-                <p>
-                  Situated at 1,490 meters above sea level on the southern slope
-                  of Mount Aragats, the observatory benefits from excellent
-                  atmospheric conditions &mdash; approximately 200 clear nights per
-                  year &mdash; making it an ideal location for optical astronomical
-                  observations.
-                </p>
+                <p>{t.about.missionP1}</p>
+                <p>{t.about.missionP2}</p>
               </div>
             </motion.div>
           </div>
@@ -178,9 +155,9 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-muted/30 pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <SectionHeading
-            label="Infrastructure"
-            title="Facilities & Instruments"
-            subtitle="World-class equipment for cutting-edge research"
+            label={t.about.facilitiesLabel}
+            title={t.about.facilitiesTitle}
+            subtitle={t.about.facilitiesSubtitle}
           />
           <div className="mt-14 grid sm:grid-cols-2 gap-5">
             {facilities.map((facility, index) => (
@@ -211,9 +188,9 @@ export default function AboutPage() {
       <section id="history" className="py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <SectionHeading
-            label="Through the Decades"
-            title="Our History"
-            subtitle="Nearly eight decades of astronomical discovery"
+            label={t.about.historyLabel}
+            title={t.about.historyTitle}
+            subtitle={t.about.historySubtitle}
           />
           <div className="mt-16 relative">
             {/* Timeline line */}
@@ -266,9 +243,9 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-muted/30 pointer-events-none" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <SectionHeading
-            label="Visual Archive"
-            title="Through the Years"
-            subtitle="Historic glimpses of the observatory"
+            label={t.about.archiveLabel}
+            title={t.about.archiveTitle}
+            subtitle={t.about.archiveSubtitle}
           />
           <div className="mt-14 grid md:grid-cols-2 gap-5">
             <motion.div

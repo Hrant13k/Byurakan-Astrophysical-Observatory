@@ -6,6 +6,7 @@ import { BookOpen, Users, TrendingUp } from "lucide-react";
 import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { getResearchAreas } from "@/data/research";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -67,7 +68,7 @@ export default function ResearchPage() {
               <div className={index % 2 !== 0 ? "lg:order-2" : ""}>
                 <div className="relative rounded-2xl overflow-hidden aspect-video">
                   <Image
-                    src={area.image}
+                    src={asset(area.image)}
                     alt={area.title}
                     fill
                     className="object-cover"

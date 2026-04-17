@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowUpRight } from "lucide-react";
 import type { NewsItem } from "@/data/news";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
 export default function NewsCard({
@@ -32,7 +33,7 @@ export default function NewsCard({
       <Link href={`/news/${item.id}`} className="block">
         <div className="relative h-52 overflow-hidden">
           <Image
-            src={item.image}
+            src={asset(item.image)}
             alt={item.title}
             fill
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"

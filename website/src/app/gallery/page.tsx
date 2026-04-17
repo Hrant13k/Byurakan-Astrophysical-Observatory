@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import PageHeader from "@/components/shared/PageHeader";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
 const galleryImages = [
@@ -139,7 +140,7 @@ export default function GalleryPage() {
                 onClick={() => setLightboxIndex(index)}
               >
                 <Image
-                  src={image.src}
+                  src={asset(image.src)}
                   alt={image.alt}
                   width={800}
                   height={600}
@@ -202,7 +203,7 @@ export default function GalleryPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={filtered[lightboxIndex].src}
+                src={asset(filtered[lightboxIndex].src)}
                 alt={filtered[lightboxIndex].alt}
                 width={1200}
                 height={800}

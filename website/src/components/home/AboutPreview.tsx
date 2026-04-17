@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { asset } from "@/lib/asset";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { useLanguage } from "@/lib/i18n";
@@ -27,7 +28,7 @@ export default function AboutPreview() {
           >
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <Image
-                src="/images/old-img2.webp"
+                src={asset("/images/old-img2.webp")}
                 alt="Historic Byurakan Observatory"
                 fill
                 className="object-cover"
@@ -43,7 +44,7 @@ export default function AboutPreview() {
               className="absolute -bottom-8 -right-4 sm:right-8 w-32 sm:w-40 rounded-2xl overflow-hidden border-4 border-background shadow-2xl"
             >
               <Image
-                src="/images/viktorambartsumian1.png"
+                src={asset("/images/viktorambartsumian1.png")}
                 alt="Viktor Ambartsumian, founder"
                 width={160}
                 height={200}

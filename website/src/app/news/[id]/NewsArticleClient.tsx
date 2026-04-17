@@ -9,6 +9,7 @@ import { buttonVariants } from "@/components/ui/button";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
 import NewsCard from "@/components/cards/NewsCard";
 import { getNews } from "@/data/news";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
@@ -100,7 +101,7 @@ export default function NewsArticleClient({ id }: { id: string }) {
         <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8">
           <div className="relative aspect-[16/9] rounded-2xl overflow-hidden">
             <Image
-              src={article.image}
+              src={asset(article.image)}
               alt={article.title}
               fill
               priority

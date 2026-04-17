@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { getPrograms } from "@/data/education";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -93,7 +94,7 @@ export default function EducationPage() {
               className="relative rounded-2xl overflow-hidden aspect-video"
             >
               <Image
-                src="/images/img1.jpg"
+                src={asset("/images/img1.jpg")}
                 alt="Inside the telescope dome"
                 fill
                 className="object-cover"

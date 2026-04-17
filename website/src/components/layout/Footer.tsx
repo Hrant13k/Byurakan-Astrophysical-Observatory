@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
+import { asset } from "@/lib/asset";
 
 const footerLinks = {
   observatory: [
@@ -67,7 +68,7 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 mb-5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/icon/observatory-icon.svg"
+                src={asset("/icon/observatory-icon.svg")}
                 alt="BAO"
                 className="h-7 w-7"
               />

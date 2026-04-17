@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Telescope } from "lucide-react";
+import { asset } from "@/lib/asset";
 import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n";
 
@@ -15,7 +16,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/background.jpg"
+          src={asset("/images/background.jpg")}
           alt="Byurakan Observatory under star trails"
           fill
           priority

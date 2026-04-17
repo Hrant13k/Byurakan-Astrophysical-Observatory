@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { buttonVariants } from "@/components/ui/button";
+import { asset } from "@/lib/asset";
 import { cn } from "@/lib/utils";
 import { GraduationCap, Users, Telescope, ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
@@ -41,7 +42,7 @@ export default function CTASection() {
       {/* Background */}
       <div className="absolute inset-0">
         <Image
-          src="/images/img2.jpg"
+          src={asset("/images/img2.jpg")}
           alt="Observatory at night"
           fill
           className="object-cover"

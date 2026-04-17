@@ -6,6 +6,7 @@ import { Telescope, Mountain, Database, Award } from "lucide-react";
 import PageHeader from "@/components/shared/PageHeader";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { getTimeline } from "@/data/timeline";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -76,7 +77,7 @@ export default function AboutPage() {
               <div className="space-y-4">
                 <div className="rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/viktorambartsumian1.png"
+                    src={asset("/images/viktorambartsumian1.png")}
                     alt="Viktor Ambartsumian, young portrait"
                     width={400}
                     height={500}
@@ -87,7 +88,7 @@ export default function AboutPage() {
               <div className="space-y-4 pt-8">
                 <div className="rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/viktorambartsumian2.jpg"
+                    src={asset("/images/viktorambartsumian2.jpg")}
                     alt="Viktor Ambartsumian, later years"
                     width={400}
                     height={260}
@@ -96,7 +97,7 @@ export default function AboutPage() {
                 </div>
                 <div className="rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/viktorambartsumianwithjanoort.jpg"
+                    src={asset("/images/viktorambartsumianwithjanoort.jpg")}
                     alt="Viktor Ambartsumian with Jan Oort"
                     width={400}
                     height={300}
@@ -122,7 +123,7 @@ export default function AboutPage() {
               className="relative rounded-2xl overflow-hidden aspect-[4/3] order-2 lg:order-1"
             >
               <Image
-                src="/images/telescope1.jpg"
+                src={asset("/images/telescope1.jpg")}
                 alt="2.6m Telescope"
                 fill
                 className="object-cover"
@@ -256,7 +257,7 @@ export default function AboutPage() {
               className="group relative rounded-2xl overflow-hidden aspect-[4/3]"
             >
               <Image
-                src="/images/old-img1.jpg"
+                src={asset("/images/old-img1.jpg")}
                 alt="Historic Byurakan Observatory"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -274,7 +275,7 @@ export default function AboutPage() {
               className="group relative rounded-2xl overflow-hidden aspect-[4/3]"
             >
               <Image
-                src="/images/old-img2.webp"
+                src={asset("/images/old-img2.webp")}
                 alt="Byurakan Observatory historic view"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"

@@ -8,6 +8,7 @@ import { Menu, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { getNavigation, type NavItem } from "@/data/navigation";
 import { useLanguage } from "@/lib/i18n";
+import { asset } from "@/lib/asset";
 import { cn } from "@/lib/utils";
 
 function DesktopNavItem({ item }: { item: NavItem }) {
@@ -194,7 +195,7 @@ export default function Navbar() {
             <div className="relative h-9 w-9 transition-transform duration-300 group-hover:scale-105">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/icon/observatory-icon.svg"
+                src={asset("/icon/observatory-icon.svg")}
                 alt="BAO Logo"
                 className="h-9 w-9"
               />

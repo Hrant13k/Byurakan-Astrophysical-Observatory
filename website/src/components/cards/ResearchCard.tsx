@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Users, BookOpen, ArrowUpRight } from "lucide-react";
 import type { ResearchArea } from "@/data/research";
+import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
 export default function ResearchCard({
@@ -26,7 +27,7 @@ export default function ResearchCard({
     >
       <div className="relative h-52 overflow-hidden">
         <Image
-          src={area.image}
+          src={asset(area.image)}
           alt={area.title}
           fill
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"

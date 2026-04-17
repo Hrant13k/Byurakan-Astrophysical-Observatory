@@ -182,6 +182,29 @@ export const translations = {
       publishedPapers: "Published Papers",
       activeResearchers: "Active Researchers",
       researchAreasCount: "Research Areas",
+      backToTeam: "Back to Team",
+      backToNews: "Back to News",
+      notFound: "Not Found",
+      notFoundDesc: "The content you\u2019re looking for doesn\u2019t exist or has been moved.",
+    },
+    // Profile page
+    profile: {
+      biography: "Biography",
+      specialization: "Specialization",
+      department: "Department",
+      email: "Email",
+      publicationsCount: "Publications",
+      getInTouch: "Get in Touch",
+      contactDesc: "For research inquiries or collaboration opportunities",
+      sendEmail: "Send Email",
+    },
+    // Article page
+    article: {
+      publishedOn: "Published on",
+      by: "By",
+      share: "Share",
+      relatedNews: "Related News",
+      readTime: "min read",
     },
     // Facilities
     facilities: {
@@ -385,6 +408,27 @@ export const translations = {
       publishedPapers: "\u0540\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u057e\u0561\u056e \u0570\u0578\u0564\u057e\u0561\u056e\u0576\u0565\u0580",
       activeResearchers: "\u0531\u056f\u057f\u056b\u057e \u0570\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0572\u0576\u0565\u0580",
       researchAreasCount: "\u0540\u0565\u057f\u0561\u0566\u0578\u057f\u0561\u056f\u0561\u0576 \u0578\u0582\u0572\u0572\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580",
+      backToTeam: "\u054e\u0565\u0580\u0561\u0564\u0561\u057c\u0576\u0561\u056c \u0569\u056b\u0574",
+      backToNews: "\u054e\u0565\u0580\u0561\u0564\u0561\u057c\u0576\u0561\u056c \u0576\u0578\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580\u056b\u0576",
+      notFound: "\u0549\u056b \u0563\u057f\u0576\u057e\u0565\u056c",
+      notFoundDesc: "\u0541\u0565\u0580 \u0583\u0576\u057f\u0580\u0578\u0582\u0574\u0568 \u0563\u0578\u0575\u0578\u0582\u0569\u0575\u0578\u0582\u0576 \u0579\u0578\u0582\u0576\u056b \u056f\u0561\u0574 \u057f\u0565\u0572\u0561\u0583\u0578\u056d\u057e\u0561\u056e \u0567:",
+    },
+    profile: {
+      biography: "\u053f\u0565\u0576\u057d\u0561\u0563\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576",
+      specialization: "\u0544\u0561\u057d\u0576\u0561\u0563\u056b\u057f\u0578\u0582\u0569\u0575\u0578\u0582\u0576",
+      department: "\u0532\u0561\u056a\u056b\u0576",
+      email: "\u0537\u056c. \u0583\u0578\u057d\u057f",
+      publicationsCount: "\u0540\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u0578\u0582\u0574\u0576\u0565\u0580",
+      getInTouch: "\u053f\u0561\u057a \u0570\u0561\u057d\u057f\u0561\u057f\u0565\u056c",
+      contactDesc: "\u0540\u0565\u057f\u0561\u0566\u0578\u057f\u0561\u056f\u0561\u0576 \u0570\u0561\u0580\u0581\u0578\u0582\u0574\u0576\u0565\u0580\u056b \u056f\u0561\u0574 \u0570\u0561\u0574\u0561\u0563\u0578\u0580\u056e\u0561\u056f\u0581\u0578\u0582\u0569\u0575\u0561\u0576 \u0570\u0561\u0574\u0561\u0580",
+      sendEmail: "\u0548\u0582\u0572\u0561\u0580\u056f\u0565\u056c \u0576\u0561\u0574\u0561\u056f",
+    },
+    article: {
+      publishedOn: "\u0540\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u057e\u0561\u056e \u0567",
+      by: "\u0540\u0565\u0572\u056b\u0576\u0561\u056f",
+      share: "\u053f\u056b\u057d\u057e\u0565\u056c",
+      relatedNews: "\u0540\u0561\u0580\u0561\u056f\u056b\u0581 \u0576\u0578\u0580\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580",
+      readTime: "\u0580\u0578\u057a\u0565 \u0568\u0576\u0569\u0565\u0580\u0581\u0578\u0582\u0574",
     },
     facilities: {
       telescope26: "2.6\u0574 \u053f\u0561\u057d\u0565\u0563\u0580\u0565\u0576\u056b \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f",

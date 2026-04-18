@@ -14,14 +14,15 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
-import { publications } from "@/data/publications";
+import { getPublications } from "@/data/publications";
 import { useLanguage } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function PublicationDetailClient({ id }: { id: string }) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  const publications = getPublications(locale);
   const pub = publications.find((p) => p.id === id);
 
   if (!pub) {
@@ -43,7 +44,7 @@ export default function PublicationDetailClient({ id }: { id: string }) {
   }
 
   const related = publications
-    .filter((p) => p.id !== id && p.category === pub.category)
+    .filter((p) => p.id !== id && p.categoryKey === pub.categoryKey)
     .slice(0, 3);
 
   const citation = `${pub.authors.join(", ")} (${pub.year}). ${pub.title}. ${pub.journal}${pub.volume ? `, ${pub.volume}` : ""}${pub.pages ? `, ${pub.pages}` : ""}.`;

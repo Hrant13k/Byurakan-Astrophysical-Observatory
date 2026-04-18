@@ -119,14 +119,10 @@ export default function EducationPage() {
                 {t.common.featuredProgram}
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-foreground">
-                Byurakan International Summer School
+                {t.common.bissTitle}
               </h2>
               <p className="mt-5 text-[15px] text-muted-foreground leading-[1.75]">
-                The BISS is one of the premier summer schools in astronomy,
-                attracting talented graduate students and early-career
-                researchers from over 20 countries. The program combines
-                lectures by internationally renowned astronomers with hands-on
-                observational experience using Byurakan&apos;s telescopes.
+                {t.common.bissDesc}
               </p>
               <div className="mt-8 grid grid-cols-3 gap-4">
                 {[

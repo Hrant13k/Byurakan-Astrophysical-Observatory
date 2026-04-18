@@ -66,7 +66,7 @@ export default function ContactPage() {
                     <input
                       id="name"
                       type="text"
-                      placeholder="Your name"
+                      placeholder={t.contact.namePlaceholder}
                       className="w-full rounded-xl bg-muted px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground border border-border/60 outline-none focus:border-primary/50 transition-colors"
                     />
                   </div>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     rows={5}
-                    placeholder="Your message..."
+                    placeholder={t.contact.messagePlaceholder}
                     className="w-full rounded-xl bg-muted px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground border border-border/60 outline-none focus:border-primary/50 transition-colors resize-none"
                   />
                 </div>

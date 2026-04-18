@@ -8,113 +8,156 @@ import PageHeader from "@/components/shared/PageHeader";
 import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
 
-const galleryImages = [
+type Caption = { en: string; am: string };
+
+const galleryImages: {
+  src: string;
+  alt: string;
+  caption: Caption;
+  category: "Observatory" | "Telescope" | "Historic";
+}[] = [
   {
     src: "/images/background.jpg",
     alt: "Star trails over the observatory dome",
-    caption:
-      "Long-exposure star trails circling the celestial pole above the 2.6m telescope dome",
+    caption: {
+      en: "Long-exposure star trails circling the celestial pole above the 2.6m telescope dome",
+      am: "Երկարատև էքսպոզիցիայով աստղային հետքեր, որոնք պտտվում են երկնային բևեռի շուրջ 2.6մ հեռադիտակի գմբեթի վրա",
+    },
     category: "Observatory",
   },
   {
     src: "/images/img2.jpg",
     alt: "Observatory dome at night",
-    caption:
-      "The 2.6m telescope dome silhouetted against the starry Armenian sky",
+    caption: {
+      en: "The 2.6m telescope dome silhouetted against the starry Armenian sky",
+      am: "2.6մ հեռադիտակի գմբեթը հայկական աստղազարդ երկնքի ֆոնին",
+    },
     category: "Observatory",
   },
   {
     src: "/images/img3.jpg",
     alt: "Observatory dome with Mount Ararat",
-    caption:
-      "The observatory dome with the majestic Mount Ararat rising in the distance",
+    caption: {
+      en: "The observatory dome with the majestic Mount Ararat rising in the distance",
+      am: "Աստղադիտարանի գմբեթը վեհաշուք Արարատ լեռան ֆոնին",
+    },
     category: "Observatory",
   },
   {
     src: "/images/img5.jpg",
     alt: "Main observatory building in spring",
-    caption:
-      "The main observatory building surrounded by the green landscape of Mount Aragats",
+    caption: {
+      en: "The main observatory building surrounded by the green landscape of Mount Aragats",
+      am: "Աստղադիտարանի գլխավոր շենքը Արագած լեռան կանաչ բնապատկերի մեջ",
+    },
     category: "Observatory",
   },
   {
     src: "/images/img7.jpg",
     alt: "Observatory campus domes",
-    caption:
-      "Two of the observatory\u2019s distinctive dome structures on the campus grounds",
+    caption: {
+      en: "Two of the observatory\u2019s distinctive dome structures on the campus grounds",
+      am: "Աստղադիտարանի տարածքում գտնվող երկու բնորոշ գմբեթային կառույցները",
+    },
     category: "Observatory",
   },
   {
     src: "/images/img4.jpg",
     alt: "BAO scientists group photo",
-    caption:
-      "Scientists of Byurakan Observatory gathered in front of the 2.6m dome",
+    caption: {
+      en: "Scientists of Byurakan Observatory gathered in front of the 2.6m dome",
+      am: "Բյուրականի աստղադիտարանի գիտնականները հավաքված 2.6մ գմբեթի առջև",
+    },
     category: "Observatory",
   },
   {
     src: "/images/img1.jpg",
     alt: "Inside the telescope dome",
-    caption: "Visitors exploring the interior of the main telescope dome",
+    caption: {
+      en: "Visitors exploring the interior of the main telescope dome",
+      am: "Այցելուները ուսումնասիրում են գլխավոր հեռադիտակի գմբեթի ներսը",
+    },
     category: "Telescope",
   },
   {
     src: "/images/telescope1.jpg",
     alt: "The 2.6m telescope",
-    caption:
-      "The 2.6-meter Cassegrain telescope \u2014 the largest in the Near East",
+    caption: {
+      en: "The 2.6-meter Cassegrain telescope \u2014 the largest in the Near East",
+      am: "2.6 մետրանոց Կասեգրենի հեռադիտակը՝ Մերձավոր Արևելքի ամենամեծը",
+    },
     category: "Telescope",
   },
   {
     src: "/images/telescope2.webp",
     alt: "Telescope dome tour",
-    caption:
-      "A guided tour of the telescope dome for visitors from around the world",
+    caption: {
+      en: "A guided tour of the telescope dome for visitors from around the world",
+      am: "Հեռադիտակի գմբեթի էքսկուրսիան աշխարհի տարբեր ծագերից եկած այցելուների համար",
+    },
     category: "Telescope",
   },
   {
     src: "/images/telescope3.jpg",
     alt: "Educational session at the telescope",
-    caption:
-      "Students and guide during an educational visit to the telescope hall",
+    caption: {
+      en: "Students and guide during an educational visit to the telescope hall",
+      am: "Ուսանողներ և ուղեկցող հեռադիտակի սրահ կատարվող կրթական այցի ընթացքում",
+    },
     category: "Telescope",
   },
   {
     src: "/images/img6.jpg",
     alt: "Small silver dome",
-    caption:
-      "One of the smaller auxiliary dome structures in the observatory grounds",
+    caption: {
+      en: "One of the smaller auxiliary dome structures in the observatory grounds",
+      am: "Աստղադիտարանի տարածքի փոքր օժանդակ գմբեթային կառույցներից մեկը",
+    },
     category: "Telescope",
   },
   {
     src: "/images/viktorambartsumian1.png",
     alt: "Viktor Ambartsumian portrait",
-    caption: "Viktor Ambartsumian, founder of the Byurakan Observatory",
+    caption: {
+      en: "Viktor Ambartsumian, founder of the Byurakan Observatory",
+      am: "Վիկտոր Համբարձումյան՝ Բյուրականի աստղադիտարանի հիմնադիրը",
+    },
     category: "Historic",
   },
   {
     src: "/images/viktorambartsumian2.jpg",
     alt: "Viktor Ambartsumian later years",
-    caption: "Ambartsumian in his later years, continuing his scientific work",
+    caption: {
+      en: "Ambartsumian in his later years, continuing his scientific work",
+      am: "Համբարձումյանը ուշ տարիներին՝ շարունակելով իր գիտական աշխատանքը",
+    },
     category: "Historic",
   },
   {
     src: "/images/viktorambartsumianwithjanoort.jpg",
     alt: "Ambartsumian with Jan Oort",
-    caption:
-      "Viktor Ambartsumian with Dutch astronomer Jan Oort at an international conference",
+    caption: {
+      en: "Viktor Ambartsumian with Dutch astronomer Jan Oort at an international conference",
+      am: "Վիկտոր Համբարձումյանը հոլանդացի աստղագետ Յան Օորտի հետ միջազգային գիտաժողովում",
+    },
     category: "Historic",
   },
   {
     src: "/images/old-img1.jpg",
     alt: "Historic observatory view",
-    caption:
-      "The Byurakan Observatory shortly after its founding in 1946",
+    caption: {
+      en: "The Byurakan Observatory shortly after its founding in 1946",
+      am: "Բյուրականի աստղադիտարանը 1946 թ. հիմնադրումից անմիջապես հետո",
+    },
     category: "Historic",
   },
   {
     src: "/images/old-img2.webp",
     alt: "Historic observatory building",
-    caption: "The observatory campus featuring the iconic dome towers",
+    caption: {
+      en: "The observatory campus featuring the iconic dome towers",
+      am: "Աստղադիտարանի տարածքը՝ խորհրդանշական գմբեթային աշտարակներով",
+    },
     category: "Historic",
   },
 ];
@@ -122,7 +165,7 @@ const galleryImages = [
 const categoryKeys = ["All", "Observatory", "Telescope", "Historic"] as const;
 
 export default function GalleryPage() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
   const [activeCategory, setActiveCategory] = useState("All");
 
   const categoryLabels: Record<string, string> = {
@@ -198,7 +241,7 @@ export default function GalleryPage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-5 left-5 right-5">
                     <p className="text-sm text-white font-medium leading-snug">
-                      {image.caption}
+                      {image.caption[locale]}
                     </p>
                   </div>
                 </div>
@@ -259,7 +302,7 @@ export default function GalleryPage() {
                 className="max-h-[80vh] w-auto object-contain rounded-lg"
               />
               <p className="mt-4 text-center text-sm text-white/60">
-                {filtered[lightboxIndex].caption}
+                {filtered[lightboxIndex].caption[locale]}
               </p>
             </motion.div>
           </motion.div>

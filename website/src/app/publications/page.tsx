@@ -6,26 +6,36 @@ import { motion } from "framer-motion";
 import { Search, ExternalLink, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import PageHeader from "@/components/shared/PageHeader";
-import { publications, publicationCategories } from "@/data/publications";
+import {
+  getPublications,
+  getPublicationCategories,
+  publicationCategoryKeys,
+} from "@/data/publications";
 import { useLanguage } from "@/lib/i18n";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function PublicationsPage() {
-  const { t } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t, locale } = useLanguage();
+  const [activeCategoryKey, setActiveCategoryKey] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
 
+  const publications = useMemo(() => getPublications(locale), [locale]);
+  const categoryLabels = useMemo(
+    () => getPublicationCategories(locale),
+    [locale]
+  );
+
   const years = useMemo(
     () => [...new Set(publications.map((p) => p.year))].sort((a, b) => b - a),
-    []
+    [publications]
   );
 
   const filtered = useMemo(() => {
     return publications.filter((pub) => {
       const matchCategory =
-        activeCategory === "All" || pub.category === activeCategory;
+        activeCategoryKey === "All" || pub.categoryKey === activeCategoryKey;
       const matchYear = !selectedYear || pub.year === selectedYear;
       const matchSearch =
         !searchQuery ||
@@ -35,7 +45,7 @@ export default function PublicationsPage() {
         );
       return matchCategory && matchYear && matchSearch;
     });
-  }, [activeCategory, selectedYear, searchQuery]);
+  }, [publications, activeCategoryKey, selectedYear, searchQuery]);
 
   return (
     <>
@@ -62,17 +72,17 @@ export default function PublicationsPage() {
 
             {/* Category & Year filters */}
             <div className="flex flex-wrap gap-2">
-              {publicationCategories.map((cat) => (
+              {publicationCategoryKeys.map((catKey, i) => (
                 <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
+                  key={catKey}
+                  onClick={() => setActiveCategoryKey(catKey)}
                   className={`px-3.5 py-1.5 rounded-full text-[12px] font-medium tracking-wide transition-all duration-200 ${
-                    activeCategory === cat
+                    activeCategoryKey === catKey
                       ? "bg-primary text-primary-foreground"
                       : "bg-muted text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {cat}
+                  {categoryLabels[i]}
                 </button>
               ))}
               <span className="mx-1.5 border-l border-border/60" />
@@ -174,7 +184,7 @@ export default function PublicationsPage() {
             <div className="text-center py-20">
               <BookOpen className="h-10 w-10 text-muted-foreground/20 mx-auto mb-4" />
               <p className="text-muted-foreground">
-                No publications match your criteria.
+                {t.publication.noResults}
               </p>
             </div>
           )}

@@ -118,6 +118,8 @@ export const translations = {
       archiveLabel: "Visual Archive",
       archiveTitle: "Through the Years",
       archiveSubtitle: "Historic glimpses of the observatory",
+      archiveCaption1: "Early years of the observatory",
+      archiveCaption2: "The observatory campus in its early decades",
     },
     // Footer
     footer: {
@@ -158,6 +160,8 @@ export const translations = {
       send: "Send Message",
       information: "Information",
       selectTopic: "Select a topic",
+      namePlaceholder: "Your name",
+      messagePlaceholder: "Your message...",
       generalInquiry: "General Inquiry",
       researchCollab: "Research Collaboration",
       visiting: "Visiting / Tours",
@@ -197,6 +201,8 @@ export const translations = {
       editions: "Editions",
       countries: "Countries",
       alumni: "Alumni",
+      bissTitle: "Byurakan International Summer School",
+      bissDesc: "The BISS is one of the premier summer schools in astronomy, attracting talented graduate students and early-career researchers from over 20 countries. The program combines lectures by internationally renowned astronomers with hands-on observational experience using Byurakan\u2019s telescopes.",
       publishedPapers: "Published Papers",
       activeResearchers: "Active Researchers",
       researchAreasCount: "Research Areas",
@@ -266,6 +272,7 @@ export const translations = {
       openDoi: "Open on DOI",
       relatedPublications: "Related Publications",
       citation: "Citation",
+      noResults: "No publications match your criteria.",
     },
     // Facilities
     facilities: {
@@ -408,6 +415,8 @@ export const translations = {
       archiveLabel: "\u054f\u0565\u057d\u0578\u0572\u0561\u056f\u0561\u0576 \u0561\u0580\u056d\u056b\u057e",
       archiveTitle: "\u054f\u0561\u0580\u056b\u0576\u0565\u0580\u056b \u0568\u0576\u0569\u0561\u0581\u0584\u0578\u057e",
       archiveSubtitle: "\u0531\u057d\u057f\u0572\u0561\u0564\u056b\u057f\u0561\u0580\u0561\u0576\u056b \u057a\u0561\u057f\u0574\u0561\u056f\u0561\u0576 \u0570\u0561\u0575\u0561\u0581\u0584\u0576\u0565\u0580",
+      archiveCaption1: "Աստղադիտարանի վաղ տարիները",
+      archiveCaption2: "Աստղադիտարանի տարածքը առաջին տասնամյակներում",
     },
     footer: {
       stayConnected: "\u053f\u0561\u057a\u056b \u0574\u0565\u057b",
@@ -446,6 +455,8 @@ export const translations = {
       send: "\u0548\u0582\u0572\u0561\u0580\u056f\u0565\u056c",
       information: "\u054f\u0565\u0572\u0565\u056f\u0561\u057f\u057e\u0578\u0582\u0569\u0575\u0578\u0582\u0576",
       selectTopic: "\u0538\u0576\u057f\u0580\u0565\u0584 \u0569\u0565\u0574\u0561",
+      namePlaceholder: "Ձեր անունը",
+      messagePlaceholder: "Ձեր հաղորդագրությունը...",
       generalInquiry: "\u0538\u0576\u0564\u0570\u0561\u0576\u0578\u0582\u0580 \u0570\u0561\u0580\u0581\u0578\u0582\u0574",
       researchCollab: "\u0540\u0565\u057f\u0561\u0566\u0578\u057f\u0561\u056f\u0561\u0576 \u0570\u0561\u0574\u0561\u0563\u0578\u0580\u056e\u0561\u056f\u0581\u0578\u0582\u0569\u0575\u0578\u0582\u0576",
       visiting: "\u0531\u0575\u0581\u0565\u056c\u0578\u0582\u0569\u0575\u0578\u0582\u0576 / \u0537\u0584\u057d\u056f\u0578\u0582\u0580\u057d\u056b\u0561",
@@ -484,6 +495,8 @@ export const translations = {
       editions: "\u0539\u0578\u0572\u0561\u0580\u056f\u0578\u0582\u0574",
       countries: "\u0535\u0580\u056f\u056b\u0580",
       alumni: "\u0547\u0580\u057b\u0561\u0576\u0561\u057e\u0561\u0580\u057f",
+      bissTitle: "Բյուրականի միջազգային ամառային դպրոց",
+      bissDesc: "BISS-ը աստղագիտության բնագավառի առաջատար ամառային դպրոցներից է՝ գրավելով 20-ից ավելի երկրների տաղանդավոր մագիստրանտների և սկսնակ հետազոտողների։ Ծրագիրը համադրում է միջազգային ճանաչում ունեցող աստղագետների դասախոսությունները Բյուրականի հեռադիտակներով գործնական դիտարկումների հետ:",
       publishedPapers: "\u0540\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u057e\u0561\u056e \u0570\u0578\u0564\u057e\u0561\u056e\u0576\u0565\u0580",
       activeResearchers: "\u0531\u056f\u057f\u056b\u057e \u0570\u0565\u057f\u0561\u0566\u0578\u057f\u0578\u0572\u0576\u0565\u0580",
       researchAreasCount: "\u0540\u0565\u057f\u0561\u0566\u0578\u057f\u0561\u056f\u0561\u0576 \u0578\u0582\u0572\u0572\u0578\u0582\u0569\u0575\u0578\u0582\u0576\u0576\u0565\u0580",
@@ -549,6 +562,7 @@ export const translations = {
       openDoi: "\u0532\u0561\u0581\u0565\u056c DOI-\u0578\u0582\u0574",
       relatedPublications: "\u0540\u0561\u0580\u0561\u056f\u056b\u0581 \u0570\u0580\u0561\u057a\u0561\u0580\u0561\u056f\u0578\u0582\u0574\u0576\u0565\u0580",
       citation: "\u0540\u0572\u0578\u0582\u0574",
+      noResults: "Ձեր չափանիշներին համապատասխանող հրապարակումներ չկան:",
     },
     facilities: {
       telescope26: "2.6\u0574 \u053f\u0561\u057d\u0565\u0563\u0580\u0565\u0576\u056b \u0570\u0565\u057c\u0561\u0564\u056b\u057f\u0561\u056f",

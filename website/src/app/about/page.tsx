@@ -264,7 +264,7 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <p className="absolute bottom-5 left-5 text-sm text-white/80 font-medium">
-                Early years of the observatory
+                {t.about.archiveCaption1}
               </p>
             </motion.div>
             <motion.div
@@ -282,7 +282,7 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <p className="absolute bottom-5 left-5 text-sm text-white/80 font-medium">
-                The observatory campus in its early decades
+                {t.about.archiveCaption2}
               </p>
             </motion.div>
           </div>

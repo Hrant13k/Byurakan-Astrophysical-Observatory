@@ -1,8 +1,8 @@
-import { publications } from "@/data/publications";
+import { getPublications } from "@/data/publications";
 import PublicationDetailClient from "./PublicationDetailClient";
 
 export function generateStaticParams() {
-  return publications.map((pub) => ({ id: pub.id }));
+  return getPublications("en").map((pub) => ({ id: pub.id }));
 }
 
 export default async function PublicationDetailPage({

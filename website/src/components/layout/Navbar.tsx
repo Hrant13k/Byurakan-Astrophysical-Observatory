@@ -11,19 +11,22 @@ import { useLanguage } from "@/lib/i18n";
 import { asset } from "@/lib/asset";
 import { cn } from "@/lib/utils";
 
-function DesktopNavItem({ item }: { item: NavItem }) {
+function DesktopNavItem({ item, isAm }: { item: NavItem; isAm: boolean }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const isActive =
     pathname === item.href ||
     (item.href !== "/" && pathname.startsWith(item.href));
 
+  const labelSize = isAm ? "text-[11px] tracking-normal" : "text-[13px] tracking-wide";
+
   if (!item.children) {
     return (
       <Link
         href={item.href}
         className={cn(
-          "relative py-1 text-[13px] font-medium tracking-wide uppercase transition-colors duration-200",
+          "relative py-1 font-medium uppercase whitespace-nowrap transition-colors duration-200",
+          labelSize,
           isActive
             ? "text-foreground"
             : "text-muted-foreground hover:text-foreground"
@@ -49,7 +52,8 @@ function DesktopNavItem({ item }: { item: NavItem }) {
       <Link
         href={item.href}
         className={cn(
-          "relative flex items-center gap-1 py-1 text-[13px] font-medium tracking-wide uppercase transition-colors duration-200",
+          "relative flex items-center gap-1 py-1 font-medium uppercase whitespace-nowrap transition-colors duration-200",
+          labelSize,
           isActive
             ? "text-foreground"
             : "text-muted-foreground hover:text-foreground"
@@ -169,6 +173,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { locale, t, setLocale } = useLanguage();
+  const isAm = locale === "am";
 
   const navItems = useMemo(() => getNavigation(t), [t]);
 
@@ -211,9 +216,9 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-7">
+          <nav className={cn("hidden lg:flex items-center", isAm ? "gap-5" : "gap-7")}>
             {navItems.map((item) => (
-              <DesktopNavItem key={item.href} item={item} />
+              <DesktopNavItem key={item.href} item={item} isAm={isAm} />
             ))}
           </nav>
 

@@ -24,6 +24,34 @@ const galleryImages = [
     category: "Observatory",
   },
   {
+    src: "/images/img3.jpg",
+    alt: "Observatory dome with Mount Ararat",
+    caption:
+      "The observatory dome with the majestic Mount Ararat rising in the distance",
+    category: "Observatory",
+  },
+  {
+    src: "/images/img5.jpg",
+    alt: "Main observatory building in spring",
+    caption:
+      "The main observatory building surrounded by the green landscape of Mount Aragats",
+    category: "Observatory",
+  },
+  {
+    src: "/images/img7.jpg",
+    alt: "Observatory campus domes",
+    caption:
+      "Two of the observatory\u2019s distinctive dome structures on the campus grounds",
+    category: "Observatory",
+  },
+  {
+    src: "/images/img4.jpg",
+    alt: "BAO scientists group photo",
+    caption:
+      "Scientists of Byurakan Observatory gathered in front of the 2.6m dome",
+    category: "Observatory",
+  },
+  {
     src: "/images/img1.jpg",
     alt: "Inside the telescope dome",
     caption: "Visitors exploring the interior of the main telescope dome",
@@ -34,6 +62,27 @@ const galleryImages = [
     alt: "The 2.6m telescope",
     caption:
       "The 2.6-meter Cassegrain telescope \u2014 the largest in the Near East",
+    category: "Telescope",
+  },
+  {
+    src: "/images/telescope2.webp",
+    alt: "Telescope dome tour",
+    caption:
+      "A guided tour of the telescope dome for visitors from around the world",
+    category: "Telescope",
+  },
+  {
+    src: "/images/telescope3.jpg",
+    alt: "Educational session at the telescope",
+    caption:
+      "Students and guide during an educational visit to the telescope hall",
+    category: "Telescope",
+  },
+  {
+    src: "/images/img6.jpg",
+    alt: "Small silver dome",
+    caption:
+      "One of the smaller auxiliary dome structures in the observatory grounds",
     category: "Telescope",
   },
   {

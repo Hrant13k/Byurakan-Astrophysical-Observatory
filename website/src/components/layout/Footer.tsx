@@ -5,32 +5,33 @@ import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { useLanguage } from "@/lib/i18n";
 import { asset } from "@/lib/asset";
 
-const footerLinks = {
-  observatory: [
-    { label: "About", href: "/about" },
-    { label: "Research", href: "/research" },
-    { label: "Staff", href: "/staff" },
-    { label: "Gallery", href: "/gallery" },
-    { label: "History", href: "/about#history" },
-  ],
-  academic: [
-    { label: "Publications", href: "/publications" },
-    { label: "Education", href: "/education" },
-    { label: "Summer School", href: "/education#biss" },
-    { label: "News", href: "/news" },
-    { label: "Events", href: "/events" },
-  ],
-  resources: [
-    { label: "DFBS Database", href: "#" },
-    { label: "Telescope Schedule", href: "#" },
-    { label: "Weather Station", href: "#" },
-    { label: "Library Catalog", href: "#" },
-    { label: "Open Data", href: "#" },
-  ],
-};
-
 export default function Footer() {
   const { t } = useLanguage();
+
+  const footerLinks = {
+    observatory: [
+      { label: t.footer.linkAbout, href: "/about" },
+      { label: t.footer.linkResearch, href: "/research" },
+      { label: t.footer.linkStaff, href: "/staff" },
+      { label: t.footer.linkGallery, href: "/gallery" },
+      { label: t.footer.linkHistory, href: "/about#history" },
+    ],
+    academic: [
+      { label: t.footer.linkPublications, href: "/publications" },
+      { label: t.footer.linkEducation, href: "/education" },
+      { label: t.footer.linkSummerSchool, href: "/education#biss" },
+      { label: t.footer.linkNews, href: "/news" },
+      { label: t.footer.linkEvents, href: "/events" },
+    ],
+    resources: [
+      { label: t.footer.linkDfbs, href: "#" },
+      { label: t.footer.linkTelescopeSchedule, href: "#" },
+      { label: t.footer.linkWeather, href: "#" },
+      { label: t.footer.linkLibrary, href: "#" },
+      { label: t.footer.linkOpenData, href: "#" },
+    ],
+  };
+
   return (
     <footer className="border-t border-border/60">
       {/* Newsletter */}
@@ -73,16 +74,16 @@ export default function Footer() {
                 className="h-7 w-7"
               />
               <p className="text-sm font-semibold text-foreground tracking-tight">
-                Byurakan Observatory
+                {t.footer.observatoryName}
               </p>
             </div>
             <div className="space-y-3 text-sm text-muted-foreground">
               <div className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-muted-foreground/60" />
                 <span>
-                  Byurakan, Aragatsotn Province,
+                  {t.footer.addressLine1}
                   <br />
-                  Armenia, 0213
+                  {t.footer.addressLine2}
                 </span>
               </div>
               <div className="flex items-center gap-2.5">

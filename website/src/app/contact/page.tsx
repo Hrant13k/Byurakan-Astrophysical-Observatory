@@ -94,7 +94,7 @@ export default function ContactPage() {
                   </label>
                   <select
                     id="subject"
-                    className="w-full rounded-xl bg-muted px-4 py-3 text-sm text-foreground border border-border/60 outline-none focus:border-primary/50 transition-colors"
+                    className="w-full rounded-xl bg-muted pl-4 pr-10 py-3 text-sm text-foreground border border-border/60 outline-none focus:border-primary/50 transition-colors appearance-none bg-[length:14px] bg-[right_16px_center] bg-no-repeat bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20fill=%22none%22%20viewBox=%220%200%2024%2024%22%20stroke=%22%23a0a0a8%22%20stroke-width=%222%22><path%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22%20d=%22M19%209l-7%207-7-7%22%2F></svg>')]"
                     defaultValue=""
                   >
                     <option value="" disabled>

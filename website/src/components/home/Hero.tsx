@@ -10,7 +10,8 @@ import { cn } from "@/lib/utils";
 import { useLanguage } from "@/lib/i18n";
 
 export default function Hero() {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  const isAm = locale === "am";
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -41,7 +42,13 @@ export default function Hero() {
               {t.hero.established}
             </p>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-bold leading-[0.95] tracking-tight">
+            <h1
+              className={`font-bold leading-[0.95] tracking-tight ${
+                isAm
+                  ? "text-4xl sm:text-5xl lg:text-[4rem]"
+                  : "text-5xl sm:text-6xl lg:text-[5.5rem]"
+              }`}
+            >
               <span className="gradient-text">{t.hero.line1}</span>
               <br />
               <span className="text-foreground">{t.hero.line2}</span>
@@ -69,7 +76,7 @@ export default function Hero() {
               href="/research"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "gap-2.5 text-sm tracking-wide px-6"
+                "h-12 gap-2.5 text-sm tracking-wide px-8"
               )}
             >
               <Telescope className="h-4 w-4" />
@@ -79,7 +86,7 @@ export default function Hero() {
               href="/about"
               className={cn(
                 buttonVariants({ variant: "outline", size: "lg" }),
-                "gap-2.5 text-sm tracking-wide px-6"
+                "h-12 gap-2.5 text-sm tracking-wide px-8"
               )}
             >
               {t.hero.ourStory}

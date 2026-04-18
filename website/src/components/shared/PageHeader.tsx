@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
+import { useLanguage } from "@/lib/i18n";
 
 interface PageHeaderProps {
   title: string;
@@ -9,6 +10,8 @@ interface PageHeaderProps {
 }
 
 export default function PageHeader({ title, description }: PageHeaderProps) {
+  const { locale } = useLanguage();
+  const isAm = locale === "am";
   return (
     <div className="relative pt-28 pb-16 overflow-hidden">
       {/* Subtle background gradient */}
@@ -23,7 +26,13 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="mt-2"
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.05]">
+          <h1
+            className={`font-bold tracking-tight text-foreground leading-[1.05] ${
+              isAm
+                ? "text-3xl sm:text-4xl lg:text-5xl"
+                : "text-4xl sm:text-5xl lg:text-6xl"
+            }`}
+          >
             {title}
           </h1>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed">

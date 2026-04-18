@@ -1,15 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { GraduationCap, Clock, Users, CheckCircle2 } from "lucide-react";
+import { GraduationCap, Clock, Users, CheckCircle2, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import PageHeader from "@/components/shared/PageHeader";
-import SectionHeading from "@/components/shared/SectionHeading";
 import { getPrograms } from "@/data/education";
 import { asset } from "@/lib/asset";
 import { useLanguage } from "@/lib/i18n";
+import { cn } from "@/lib/utils";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -73,9 +74,16 @@ export default function EducationPage() {
                 ))}
               </div>
 
-              <Button className="mt-7" variant="outline">
+              <Link
+                href={`/education/${program.id}`}
+                className={cn(
+                  buttonVariants({ variant: "outline" }),
+                  "mt-7 gap-2"
+                )}
+              >
                 {t.cta.learnMore}
-              </Button>
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -94,8 +102,8 @@ export default function EducationPage() {
               className="relative rounded-2xl overflow-hidden aspect-video"
             >
               <Image
-                src={asset("/images/img1.jpg")}
-                alt="Inside the telescope dome"
+                src={asset("/images/telescope3.jpg")}
+                alt="Educational session near the telescope"
                 fill
                 className="object-cover"
               />

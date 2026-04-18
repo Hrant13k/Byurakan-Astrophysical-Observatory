@@ -3,7 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, User as UserIcon } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  User as UserIcon,
+  Clock,
+  CheckCircle2,
+  Quote,
+  Tag,
+} from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
@@ -86,6 +94,10 @@ export default function NewsArticleClient({ id }: { id: string }) {
                 <UserIcon className="h-3.5 w-3.5" />
                 {t.article.by} {article.author}
               </span>
+              <span className="flex items-center gap-1.5">
+                <Clock className="h-3.5 w-3.5" />
+                {article.readTimeMin} {t.article.readTime}
+              </span>
             </div>
           </motion.div>
         </div>
@@ -112,7 +124,7 @@ export default function NewsArticleClient({ id }: { id: string }) {
       </motion.section>
 
       {/* Excerpt + Content */}
-      <section className="pb-24">
+      <section className="pb-16">
         <div className="mx-auto max-w-3xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -122,9 +134,65 @@ export default function NewsArticleClient({ id }: { id: string }) {
             <p className="text-xl text-foreground leading-[1.7] font-medium">
               {article.excerpt}
             </p>
-            <div className="mt-8 text-[16px] text-muted-foreground leading-[1.85] space-y-6">
-              <p>{article.content}</p>
+
+            {/* Highlights */}
+            {article.highlights.length > 0 && (
+              <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6">
+                <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
+                  {t.article.keyHighlights}
+                </p>
+                <ul className="space-y-3">
+                  {article.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex items-start gap-2.5 text-[15px] text-foreground/90 leading-relaxed"
+                    >
+                      <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-1" />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            <div className="mt-10 text-[16px] text-muted-foreground leading-[1.85] space-y-6">
+              {article.body.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
             </div>
+
+            {/* Pull quote */}
+            {article.quote && (
+              <figure className="mt-12 border-l-2 border-primary/60 pl-6 py-2">
+                <Quote className="h-5 w-5 text-primary mb-3 opacity-60" />
+                <blockquote className="text-xl text-foreground leading-[1.55] font-medium">
+                  {article.quote.text}
+                </blockquote>
+                <figcaption className="mt-3 text-[13px] text-muted-foreground">
+                  — {article.quote.attribution}
+                </figcaption>
+              </figure>
+            )}
+
+            {/* Tags */}
+            {article.tags.length > 0 && (
+              <div className="mt-12 pt-8 border-t border-border/50">
+                <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-muted-foreground mb-3">
+                  {t.article.tags}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {article.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center gap-1 rounded-full bg-muted px-3 py-1 text-[12px] text-muted-foreground"
+                    >
+                      <Tag className="h-3 w-3" />
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>

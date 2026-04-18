@@ -123,8 +123,8 @@ export default function AboutPage() {
               className="relative rounded-2xl overflow-hidden aspect-[4/3] order-2 lg:order-1"
             >
               <Image
-                src={asset("/images/telescope1.jpg")}
-                alt="2.6m Telescope"
+                src={asset("/images/img3.jpg")}
+                alt="Observatory dome with Mount Ararat in the background"
                 fill
                 className="object-cover"
               />

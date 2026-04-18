@@ -10,6 +10,11 @@ import {
   Microscope,
   ArrowLeft,
   Send,
+  GraduationCap,
+  Briefcase,
+  Sparkles,
+  Award,
+  Calendar,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
@@ -22,6 +27,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function StaffProfileClient({ id }: { id: string }) {
   const { t, locale } = useLanguage();
+  const isAm = locale === "am";
   const member = getStaff(locale).find((m) => m.id === id);
 
   if (!member) {
@@ -45,6 +51,9 @@ export default function StaffProfileClient({ id }: { id: string }) {
     );
   }
 
+  const currentYear = new Date().getFullYear();
+  const yearsAtBao = member.joinedYear ? currentYear - member.joinedYear : null;
+
   return (
     <>
       {/* Header */}
@@ -65,7 +74,7 @@ export default function StaffProfileClient({ id }: { id: string }) {
       </div>
 
       {/* Profile Hero */}
-      <section className="pb-16">
+      <section className="pt-12 pb-16">
         <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -80,11 +89,20 @@ export default function StaffProfileClient({ id }: { id: string }) {
               <Badge variant="secondary" className="mb-4 text-[11px] tracking-wide">
                 {member.department}
               </Badge>
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground leading-[1.05]">
+              <h1
+                className={`font-bold tracking-tight text-foreground leading-[1.05] ${
+                  isAm
+                    ? "text-3xl sm:text-4xl lg:text-5xl"
+                    : "text-4xl sm:text-5xl"
+                }`}
+              >
                 {member.name}
               </h1>
               <p className="mt-3 text-lg text-muted-foreground">
                 {member.title}
+              </p>
+              <p className="mt-4 text-[15px] text-foreground/80 leading-relaxed max-w-2xl">
+                {member.bio}
               </p>
             </div>
           </motion.div>
@@ -95,30 +113,106 @@ export default function StaffProfileClient({ id }: { id: string }) {
       <section className="pb-24">
         <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-8">
-            {/* Bio */}
+            {/* Main */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1, ease }}
-              className="lg:col-span-2 space-y-8"
+              className="lg:col-span-2 space-y-10"
             >
-              <div>
-                <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
-                  {t.profile.biography}
-                </h2>
-                <p className="text-[15px] text-muted-foreground leading-[1.8]">
-                  {member.bio}
-                </p>
-              </div>
+              {/* Biography */}
+              {member.longBio.length > 0 && (
+                <div>
+                  <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
+                    {t.profile.biography}
+                  </h2>
+                  <div className="space-y-5 text-[15px] text-muted-foreground leading-[1.8]">
+                    {member.longBio.map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
+                </div>
+              )}
 
-              <div>
-                <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
-                  {t.profile.specialization}
-                </h2>
-                <p className="text-[15px] text-muted-foreground leading-[1.8]">
-                  {member.specialization}
-                </p>
-              </div>
+              {/* Research Interests */}
+              {member.researchInterests.length > 0 && (
+                <div>
+                  <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
+                    {t.profile.researchInterests}
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {member.researchInterests.map((topic) => (
+                      <span
+                        key={topic}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card px-3.5 py-1.5 text-sm text-foreground/90"
+                      >
+                        <Sparkles className="h-3 w-3 text-primary" />
+                        {topic}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Career */}
+              {member.career.length > 0 && (
+                <div>
+                  <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
+                    {t.profile.career}
+                  </h2>
+                  <ul className="space-y-3">
+                    {member.career.map((role) => (
+                      <li
+                        key={role}
+                        className="flex items-start gap-3 text-[15px] text-muted-foreground leading-relaxed"
+                      >
+                        <Briefcase className="h-4 w-4 text-primary shrink-0 mt-1" />
+                        <span>{role}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Education */}
+              {member.education.length > 0 && (
+                <div>
+                  <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
+                    {t.profile.education}
+                  </h2>
+                  <ul className="space-y-3">
+                    {member.education.map((edu) => (
+                      <li
+                        key={edu}
+                        className="flex items-start gap-3 text-[15px] text-muted-foreground leading-relaxed"
+                      >
+                        <GraduationCap className="h-4 w-4 text-primary shrink-0 mt-1" />
+                        <span>{edu}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Awards */}
+              {member.awards.length > 0 && (
+                <div>
+                  <h2 className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
+                    {t.profile.awards}
+                  </h2>
+                  <ul className="space-y-3">
+                    {member.awards.map((award) => (
+                      <li
+                        key={award}
+                        className="flex items-start gap-3 text-[15px] text-muted-foreground leading-relaxed"
+                      >
+                        <Award className="h-4 w-4 text-primary shrink-0 mt-1" />
+                        <span>{award}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </motion.div>
 
             {/* Sidebar */}
@@ -128,21 +222,32 @@ export default function StaffProfileClient({ id }: { id: string }) {
               transition={{ duration: 0.5, delay: 0.2, ease }}
               className="space-y-4"
             >
-              {/* Stats card */}
-              <div className="rounded-2xl border border-border/60 bg-card p-5">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              {/* Stats grid */}
+              <div className="grid grid-cols-2 gap-2.5">
+                <div className="rounded-2xl border border-border/60 bg-card p-4">
+                  <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-2.5">
                     <BookOpen className="h-4 w-4 text-primary" />
                   </div>
-                  <div>
+                  <p className="text-2xl font-bold tracking-tight text-foreground">
+                    {member.publications}
+                  </p>
+                  <p className="text-[10px] tracking-wider uppercase text-muted-foreground mt-0.5">
+                    {t.profile.publicationsCount}
+                  </p>
+                </div>
+                {yearsAtBao !== null && (
+                  <div className="rounded-2xl border border-border/60 bg-card p-4">
+                    <div className="w-9 h-9 rounded-xl bg-primary/10 flex items-center justify-center mb-2.5">
+                      <Calendar className="h-4 w-4 text-primary" />
+                    </div>
                     <p className="text-2xl font-bold tracking-tight text-foreground">
-                      {member.publications}
+                      {yearsAtBao}
                     </p>
-                    <p className="text-[11px] tracking-wider uppercase text-muted-foreground">
-                      {t.profile.publicationsCount}
+                    <p className="text-[10px] tracking-wider uppercase text-muted-foreground mt-0.5">
+                      {t.profile.yearsAtBao}
                     </p>
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Department card */}

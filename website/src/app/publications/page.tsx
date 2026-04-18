@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Search, ExternalLink, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
@@ -127,9 +128,12 @@ export default function PublicationsPage() {
                         {pub.year}
                       </span>
                     </div>
-                    <h3 className="text-[15px] font-semibold text-foreground leading-snug">
+                    <Link
+                      href={`/publications/${pub.id}`}
+                      className="text-[15px] font-semibold text-foreground leading-snug hover:text-primary transition-colors"
+                    >
                       {pub.title}
-                    </h3>
+                    </Link>
                     <p className="mt-1.5 text-sm text-muted-foreground">
                       {pub.authors.join(", ")}
                     </p>
@@ -142,17 +146,25 @@ export default function PublicationsPage() {
                       {pub.abstract}
                     </p>
                   </div>
-                  {pub.doi && (
-                    <a
-                      href={`https://doi.org/${pub.doi}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="shrink-0 flex items-center gap-1 text-[11px] font-medium text-primary hover:underline underline-offset-2 mt-1"
+                  <div className="shrink-0 flex flex-col items-end gap-2 mt-1">
+                    {pub.doi && (
+                      <a
+                        href={`https://doi.org/${pub.doi}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-[11px] font-medium text-primary hover:underline underline-offset-2"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        DOI
+                      </a>
+                    )}
+                    <Link
+                      href={`/publications/${pub.id}`}
+                      className="text-[11px] font-medium text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      <ExternalLink className="h-3 w-3" />
-                      DOI
-                    </a>
-                  )}
+                      {t.common.readMore}
+                    </Link>
+                  </div>
                 </div>
               </motion.article>
             ))}

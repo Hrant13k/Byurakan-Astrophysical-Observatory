@@ -21,7 +21,8 @@ export default function EventCard({
   event: Event;
   index?: number;
 }) {
-  const { t } = useLanguage();
+  const { t, locale } = useLanguage();
+  const dateLocale = locale === "am" ? "hy-AM" : "en-US";
 
   const typeLabels: Record<Event["type"], string> = {
     conference: t.common.conferences,
@@ -32,7 +33,7 @@ export default function EventCard({
   };
 
   const dateObj = new Date(event.date);
-  const month = dateObj.toLocaleDateString("en-US", { month: "short" });
+  const month = dateObj.toLocaleDateString(dateLocale, { month: "short" });
   const day = dateObj.getDate();
 
   return (
@@ -70,8 +71,8 @@ export default function EventCard({
           <span className="flex items-center gap-1.5">
             <Calendar className="h-3 w-3" />
             {event.endDate
-              ? `${new Date(event.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })} \u2013 ${new Date(event.endDate).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}`
-              : new Date(event.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
+              ? `${new Date(event.date).toLocaleDateString(dateLocale, { month: "short", day: "numeric" })} \u2013 ${new Date(event.endDate).toLocaleDateString(dateLocale, { month: "short", day: "numeric", year: "numeric" })}`
+              : new Date(event.date).toLocaleDateString(dateLocale, { month: "long", day: "numeric", year: "numeric" })}
           </span>
           <span className="flex items-center gap-1.5">
             <Clock className="h-3 w-3" />

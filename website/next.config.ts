@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === "production";
-const basePath = isProd ? "/Byurakan-Astrophysical-Observatory" : "";
+// Only apply the repo-name base path when deploying to GitHub Pages.
+// Vercel (and local dev) serve the site at the root, so basePath must be "".
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGitHubPages ? "/Byurakan-Astrophysical-Observatory" : "";
 
 const nextConfig: NextConfig = {
   output: "export",

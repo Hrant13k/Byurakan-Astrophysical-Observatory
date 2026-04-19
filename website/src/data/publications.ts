@@ -4,8 +4,8 @@ import { l, type LocalizedString } from "@/lib/i18n";
 interface PublicationData {
   id: string;
   title: LocalizedString;
-  authors: string[];
-  journal: string;
+  authors: LocalizedString[];
+  journal: LocalizedString;
   year: number;
   volume?: string;
   pages?: string;
@@ -27,6 +27,33 @@ export interface Publication {
   category: string;
   categoryKey: string;
 }
+
+const authors = {
+  mickaelian: { en: "A. M. Mickaelian", am: "Ա. Մ. Միքայելյան" },
+  harutyunyanH: { en: "H. V. Harutyunyan", am: "Հ. Վ. Հարությունյան" },
+  nikoghosyan: { en: "E. H. Nikoghosyan", am: "Ե. Հ. Նիկողոսյան" },
+  farmanyan: { en: "S. V. Farmanyan", am: "Ս. Վ. Ֆարմանյան" },
+  chavushyan: { en: "V. H. Chavushyan", am: "Վ. Հ. Չավուշյան" },
+  magakian: { en: "T. Yu. Magakian", am: "Տ. Յու. Մաղաքյան" },
+  harutyunyanG: { en: "G. S. Harutyunyan", am: "Գ. Ս. Հարությունյան" },
+  pikichyan: { en: "H. O. Pikichyan", am: "Հ. Օ. Պիկիչյան" },
+} satisfies Record<string, LocalizedString>;
+
+const journals = {
+  aa: { en: "Astronomy & Astrophysics", am: "Աստղագիտություն և աստղաֆիզիկա" },
+  mnras: {
+    en: "Monthly Notices of the Royal Astronomical Society",
+    am: "Թագավորական աստղագիտական ընկերության ամսական տեղեկագրեր",
+  },
+  apj: { en: "The Astrophysical Journal", am: "Աստղաֆիզիկական հանդես" },
+  prd: { en: "Physical Review D", am: "Physical Review D" },
+  aj: { en: "Astronomical Journal", am: "Աստղագիտական հանդես" },
+  solphys: { en: "Solar Physics", am: "Արեգակնային ֆիզիկա" },
+  pasp: {
+    en: "Publications of the Astronomical Society of the Pacific",
+    am: "Խաղաղ օվկիանոսի աստղագիտական ընկերության հրապարակումներ",
+  },
+} satisfies Record<string, LocalizedString>;
 
 const categoryMap: Record<string, LocalizedString> = {
   "Stellar Physics": { en: "Stellar Physics", am: "Աստղային ֆիզիկա" },
@@ -54,8 +81,8 @@ const data: PublicationData[] = [
       en: "Spectroscopic Survey of Emission-Line Stars in the Northern Milky Way: New Discoveries from the DFBS",
       am: "Էմիսիոն գծով աստղերի սպեկտրոսկոպիկ համալսարան հյուսիսային Ծիր Կաթինում՝ նոր հայտնագործություններ DFBS-ից",
     },
-    authors: ["A. M. Mickaelian", "H. V. Harutyunyan", "E. H. Nikoghosyan"],
-    journal: "Astronomy & Astrophysics",
+    authors: [authors.mickaelian, authors.harutyunyanH, authors.nikoghosyan],
+    journal: journals.aa,
     year: 2025,
     volume: "683",
     pages: "A45",
@@ -72,8 +99,8 @@ const data: PublicationData[] = [
       en: "Ultra-Compact Markarian Galaxies: A New Population of High Surface Brightness Objects",
       am: "Ուլտրակոմպակտ Մարկարյանի գալակտիկաներ՝ բարձր մակերևույթի պայծառության օբյեկտների նոր պոպուլյացիա",
     },
-    authors: ["S. V. Farmanyan", "A. M. Mickaelian", "V. H. Chavushyan"],
-    journal: "Monthly Notices of the Royal Astronomical Society",
+    authors: [authors.farmanyan, authors.mickaelian, authors.chavushyan],
+    journal: journals.mnras,
     year: 2025,
     volume: "528",
     pages: "3421-3438",
@@ -90,8 +117,8 @@ const data: PublicationData[] = [
       en: "Long-Term Variability of T Tauri Stars in the Cygnus Star-Forming Region",
       am: "T Տաուրի տիպի աստղերի երկարաժամկետ փոփոխականությունը Կարապ համաստեղության աստղածնող շրջանում",
     },
-    authors: ["T. Yu. Magakian", "H. V. Harutyunyan"],
-    journal: "The Astrophysical Journal",
+    authors: [authors.magakian, authors.harutyunyanH],
+    journal: journals.apj,
     year: 2025,
     volume: "961",
     pages: "L15",
@@ -108,8 +135,8 @@ const data: PublicationData[] = [
       en: "Dark Energy Constraints from Cosmic Void Statistics in the SDSS Footprint",
       am: "Մութ էներգիայի սահմանափակումներ՝ SDSS-ի տարածքում տիեզերական դատարկությունների վիճակագրությունից",
     },
-    authors: ["G. S. Harutyunyan", "A. M. Mickaelian"],
-    journal: "Physical Review D",
+    authors: [authors.harutyunyanG, authors.mickaelian],
+    journal: journals.prd,
     year: 2024,
     volume: "110",
     pages: "023512",
@@ -126,8 +153,8 @@ const data: PublicationData[] = [
       en: "New Herbig-Haro Objects in the L1641 Cloud: Evidence for Episodic Jet Activity",
       am: "Նոր Հերբիգ-Հարո օբյեկտներ L1641 ամպում՝ էպիզոդիկ ջրվեժային ակտիվության վկայություն",
     },
-    authors: ["T. Yu. Magakian", "E. H. Nikoghosyan", "H. V. Harutyunyan"],
-    journal: "Astronomy & Astrophysics",
+    authors: [authors.magakian, authors.nikoghosyan, authors.harutyunyanH],
+    journal: journals.aa,
     year: 2024,
     volume: "679",
     pages: "A112",
@@ -144,8 +171,8 @@ const data: PublicationData[] = [
       en: "The First Byurakan Survey Revisited: A Machine Learning Approach to Object Classification",
       am: "Առաջին Բյուրականի համալսարանը վերանայված՝ օբյեկտների դասակարգման մեքենայական ուսուցման մոտեցում",
     },
-    authors: ["A. M. Mickaelian", "S. V. Farmanyan"],
-    journal: "Astronomical Journal",
+    authors: [authors.mickaelian, authors.farmanyan],
+    journal: journals.aj,
     year: 2024,
     volume: "167",
     pages: "89",
@@ -162,8 +189,8 @@ const data: PublicationData[] = [
       en: "Solar Activity Cycle 25: Updated Predictions from Byurakan Solar Observations",
       am: "Արեգակնային ակտիվության 25-րդ ցիկլ՝ թարմացված կանխատեսումներ Բյուրականի արեգակնային դիտարկումներից",
     },
-    authors: ["H. O. Pikichyan"],
-    journal: "Solar Physics",
+    authors: [authors.pikichyan],
+    journal: journals.solphys,
     year: 2024,
     volume: "299",
     pages: "45",
@@ -180,8 +207,8 @@ const data: PublicationData[] = [
       en: "Performance Characterization of the New CCD System on the BAO 2.6m Telescope",
       am: "ԲԱԹ 2.6մ հեռադիտակի նոր CCD համակարգի աշխատանքային բնութագրում",
     },
-    authors: ["H. V. Harutyunyan", "A. M. Mickaelian"],
-    journal: "Publications of the Astronomical Society of the Pacific",
+    authors: [authors.harutyunyanH, authors.mickaelian],
+    journal: journals.pasp,
     year: 2024,
     volume: "136",
     pages: "015001",
@@ -198,8 +225,8 @@ export function getPublications(locale: Locale): Publication[] {
   return data.map((pub) => ({
     id: pub.id,
     title: l(pub.title, locale),
-    authors: pub.authors,
-    journal: pub.journal,
+    authors: pub.authors.map((a) => l(a, locale)),
+    journal: l(pub.journal, locale),
     year: pub.year,
     volume: pub.volume,
     pages: pub.pages,

@@ -90,7 +90,7 @@ export default function PublicationDetailClient({ id }: { id: string }) {
             <p className="mt-1 text-[14px] text-muted-foreground/70 italic">
               {pub.journal}
               {pub.volume && `, ${pub.volume}`}
-              {pub.pages && `, pp. ${pub.pages}`}
+              {pub.pages && `, ${t.publication.pp} ${pub.pages}`}
             </p>
           </motion.div>
         </div>

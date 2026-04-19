@@ -150,7 +150,7 @@ export default function PublicationsPage() {
                     <p className="mt-1 text-sm text-muted-foreground/70 italic">
                       {pub.journal}
                       {pub.volume && `, ${pub.volume}`}
-                      {pub.pages && `, pp. ${pub.pages}`}
+                      {pub.pages && `, ${t.publication.pp} ${pub.pages}`}
                     </p>
                     <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-2">
                       {pub.abstract}

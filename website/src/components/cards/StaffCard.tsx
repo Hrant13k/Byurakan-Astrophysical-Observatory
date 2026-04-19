@@ -30,21 +30,24 @@ export default function StaffCard({
             <User className="h-6 w-6 text-muted-foreground/60" />
           </div>
           <div className="min-w-0 flex-1">
-            <h3 className="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-200">
+            <h3 className="text-base font-semibold text-foreground leading-tight group-hover:text-primary transition-colors duration-200 break-words [overflow-wrap:anywhere]">
               {member.name}
             </h3>
-            <p className="text-sm text-muted-foreground mt-0.5">
+            <p className="text-sm text-muted-foreground mt-0.5 break-words">
               {member.title}
             </p>
           </div>
-          <ArrowUpRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground/40 group-hover:text-primary transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
 
         <div className="mt-4 space-y-3">
-          <Badge variant="secondary" className="text-[11px] tracking-wide">
+          <Badge
+            variant="secondary"
+            className="h-auto max-w-full whitespace-normal break-words [overflow-wrap:anywhere] px-3 py-1.5 text-[11px] leading-[1.55] tracking-wide text-left"
+          >
             {member.department}
           </Badge>
-          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 break-words [overflow-wrap:anywhere]">
             {member.specialization}
           </p>
         </div>

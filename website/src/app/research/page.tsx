@@ -25,7 +25,7 @@ export default function ResearchPage() {
       {/* Stats */}
       <section className="py-14">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3 sm:gap-6">
             {[
               { icon: BookOpen, value: "3,200+", label: t.common.publishedPapers },
               { icon: Users, value: "35+", label: t.common.activeResearchers },
@@ -37,13 +37,13 @@ export default function ResearchPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.4, ease }}
-                className="text-center py-6 rounded-2xl border border-border/40"
+                className="text-center px-2 py-6 rounded-2xl border border-border/40"
               >
                 <stat.icon className="h-5 w-5 text-primary mx-auto mb-3" />
                 <p className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
                   {stat.value}
                 </p>
-                <p className="mt-1 text-[11px] tracking-wider uppercase text-muted-foreground">
+                <p className="mt-1 text-[10px] sm:text-[11px] tracking-wider uppercase text-muted-foreground break-words">
                   {stat.label}
                 </p>
               </motion.div>
@@ -81,7 +81,7 @@ export default function ResearchPage() {
                 <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-primary mb-3">
                   {area.researchers} {t.common.researchers} &middot; {area.publications}+ {t.common.papers}
                 </p>
-                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground break-words hyphens-auto">
                   {area.title}
                 </h2>
                 <p className="mt-5 text-[15px] text-muted-foreground leading-[1.75]">
@@ -90,7 +90,7 @@ export default function ResearchPage() {
 
                 <div className="mt-7">
                   <h4 className="text-[11px] font-semibold tracking-[0.2em] uppercase text-foreground mb-4">
-                    Key Highlights
+                    {t.article.keyHighlights}
                   </h4>
                   <ul className="space-y-3">
                     {area.highlights.map((highlight) => (
@@ -133,17 +133,17 @@ export default function ResearchPage() {
               <p className="mt-5 text-[15px] text-muted-foreground leading-[1.75]">
                 {t.markarian.p2}
               </p>
-              <div className="mt-8 grid grid-cols-3 gap-6">
+              <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-6">
                 {[
                   { value: "1,515", label: t.markarian.galaxies },
                   { value: "17,000+", label: t.markarian.surveyed },
                   { value: "40,000+", label: t.markarian.digitized },
                 ].map((stat) => (
-                  <div key={stat.label} className="text-center py-4 rounded-xl bg-muted/50">
-                    <p className="text-2xl font-bold tracking-tight text-primary">
+                  <div key={stat.label} className="text-center px-2 py-4 rounded-xl bg-muted/50">
+                    <p className="text-xl sm:text-2xl font-bold tracking-tight text-primary">
                       {stat.value}
                     </p>
-                    <p className="mt-1 text-[11px] tracking-wider uppercase text-muted-foreground">
+                    <p className="mt-1 text-[10px] sm:text-[11px] tracking-wider uppercase text-muted-foreground break-words">
                       {stat.label}
                     </p>
                   </div>

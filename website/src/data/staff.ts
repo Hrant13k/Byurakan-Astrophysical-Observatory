@@ -3,7 +3,7 @@ import { l, type LocalizedString } from "@/lib/i18n";
 
 interface StaffMemberData {
   id: string;
-  name: string;
+  name: LocalizedString;
   title: LocalizedString;
   department: LocalizedString;
   specialization: LocalizedString;
@@ -62,7 +62,7 @@ const departmentMap: Record<string, LocalizedString> = {
 const data: StaffMemberData[] = [
   {
     id: "areg-mickaelian",
-    name: "Dr. Areg Mickaelian",
+    name: { en: "Dr. Areg Mickaelian", am: "Արեգ Միքայելյան" },
     title: { en: "Director", am: "Տնօրեն" },
     department: departmentMap["Administration"],
     specialization: {
@@ -108,7 +108,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "hayk-harutyunyan",
-    name: "Dr. Hayk Harutyunyan",
+    name: { en: "Dr. Hayk Harutyunyan", am: "Հայկ Հարությունյան" },
     title: { en: "Senior Researcher", am: "Ավագ գիտական աշխատող" },
     department: departmentMap["Stellar Physics"],
     specialization: {
@@ -149,7 +149,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "elena-nikoghosyan",
-    name: "Dr. Elena Nikoghosyan",
+    name: { en: "Dr. Elena Nikoghosyan", am: "Ելենա Նիկողոսյան" },
     title: { en: "Leading Researcher", am: "Առաջատար գիտաշխատող" },
     department: departmentMap["Stellar Physics"],
     specialization: {
@@ -189,7 +189,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "tigran-magakian",
-    name: "Dr. Tigran Magakian",
+    name: { en: "Dr. Tigran Magakian", am: "Տիգրան Մաղաքյան" },
     title: { en: "Senior Researcher", am: "Ավագ գիտական աշխատող" },
     department: departmentMap["Stellar Physics"],
     specialization: {
@@ -229,7 +229,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "vahram-chavushyan",
-    name: "Dr. Vahram Chavushyan",
+    name: { en: "Dr. Vahram Chavushyan", am: "Վահրամ Չավուշյան" },
     title: { en: "Researcher", am: "Գիտական աշխատող" },
     department: departmentMap["Extragalactic Astronomy"],
     specialization: {
@@ -264,7 +264,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "gohar-harutyunyan",
-    name: "Dr. Gohar Harutyunyan",
+    name: { en: "Dr. Gohar Harutyunyan", am: "Գոհար Հարությունյան" },
     title: { en: "Researcher", am: "Գիտական աշխատող" },
     department: departmentMap["Cosmology"],
     specialization: {
@@ -303,7 +303,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "hovhannes-pikichyan",
-    name: "Dr. Hovhannes Pikichyan",
+    name: { en: "Dr. Hovhannes Pikichyan", am: "Հովհաննես Պիկիչյան" },
     title: { en: "Senior Researcher", am: "Ավագ գիտական աշխատող" },
     department: departmentMap["Solar Physics"],
     specialization: {
@@ -337,7 +337,7 @@ const data: StaffMemberData[] = [
   },
   {
     id: "sona-farmanyan",
-    name: "Dr. Sona Farmanyan",
+    name: { en: "Dr. Sona Farmanyan", am: "Սոնա Ֆարմանյան" },
     title: { en: "Researcher", am: "Գիտական աշխատող" },
     department: departmentMap["Extragalactic Astronomy"],
     specialization: {
@@ -379,7 +379,7 @@ export function getDepartments(locale: Locale): string[] {
 export function getStaff(locale: Locale): StaffMember[] {
   return data.map((member) => ({
     id: member.id,
-    name: member.name,
+    name: l(member.name, locale),
     title: l(member.title, locale),
     department: l(member.department, locale),
     specialization: l(member.specialization, locale),

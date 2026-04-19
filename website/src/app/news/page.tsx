@@ -11,10 +11,11 @@ export default function NewsPage() {
   const { t, locale } = useLanguage();
   const newsCategories = getNewsCategories(locale);
   const news = getNews(locale);
-  const [activeCategory, setActiveCategory] = useState(newsCategories[0]);
+  const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
+  const activeCategory = newsCategories[activeCategoryIndex];
   const filtered =
-    activeCategory === newsCategories[0]
+    activeCategoryIndex === 0
       ? news
       : news.filter((n) => n.category === activeCategory);
 
@@ -28,12 +29,12 @@ export default function NewsPage() {
       <section className="py-14 pb-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="flex flex-wrap gap-2 mb-12">
-            {newsCategories.map((cat) => (
+            {newsCategories.map((cat, i) => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
+                key={i}
+                onClick={() => setActiveCategoryIndex(i)}
                 className={`px-4 py-2 rounded-full text-[13px] font-medium tracking-wide transition-all duration-200 ${
-                  activeCategory === cat
+                  activeCategoryIndex === i
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:text-foreground hover:bg-accent"
                 }`}
@@ -54,7 +55,7 @@ export default function NewsPage() {
 
           {filtered.length === 0 && (
             <p className="text-center text-muted-foreground py-20">
-              No news articles found in this category.
+              {t.common.noNewsFound}
             </p>
           )}
         </div>

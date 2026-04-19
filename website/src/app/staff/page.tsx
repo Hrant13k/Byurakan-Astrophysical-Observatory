@@ -11,10 +11,11 @@ export default function StaffPage() {
   const { t, locale } = useLanguage();
   const departments = getDepartments(locale);
   const staff = getStaff(locale);
-  const [activeDept, setActiveDept] = useState(departments[0]);
+  const [activeDeptIndex, setActiveDeptIndex] = useState(0);
 
+  const activeDept = departments[activeDeptIndex];
   const filtered =
-    activeDept === departments[0]
+    activeDeptIndex === 0
       ? staff
       : staff.filter((m) => m.department === activeDept);
 
@@ -29,12 +30,12 @@ export default function StaffPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
           {/* Department filter */}
           <div className="flex flex-wrap gap-2 mb-12">
-            {departments.map((dept) => (
+            {departments.map((dept, i) => (
               <button
-                key={dept}
-                onClick={() => setActiveDept(dept)}
+                key={i}
+                onClick={() => setActiveDeptIndex(i)}
                 className={`px-4 py-2 rounded-full text-[13px] font-medium tracking-wide transition-all duration-200 ${
-                  activeDept === dept
+                  activeDeptIndex === i
                     ? "bg-primary text-primary-foreground"
                     : "bg-muted text-muted-foreground hover:text-foreground hover:bg-accent"
                 }`}
@@ -56,7 +57,7 @@ export default function StaffPage() {
 
           {filtered.length === 0 && (
             <p className="text-center text-muted-foreground py-16">
-              No staff members found in this department.
+              {t.common.noStaffFound}
             </p>
           )}
         </div>

@@ -28,12 +28,12 @@ export default function SectionHeading({
           {label}
         </p>
       )}
-      <h2 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-foreground leading-[1.1]">
+      <h2 className="text-2xl sm:text-3xl lg:text-[2.75rem] font-bold tracking-tight text-foreground leading-[1.15] break-words hyphens-auto">
         {title}
       </h2>
       {subtitle && (
         <p
-          className={`mt-4 text-base sm:text-lg leading-relaxed max-w-2xl text-muted-foreground ${
+          className={`mt-4 text-[15px] sm:text-lg leading-relaxed max-w-2xl text-muted-foreground break-words ${
             centered ? "mx-auto" : ""
           }`}
         >

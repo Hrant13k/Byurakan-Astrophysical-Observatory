@@ -130,8 +130,9 @@ function MobileNavItem({
         {item.children && (
           <button
             onClick={() => setOpen(!open)}
-            className="p-2.5 text-muted-foreground hover:text-foreground transition-colors"
+            className="-mr-2 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
             aria-label={`Expand ${item.label}`}
+            aria-expanded={open}
           >
             <ChevronDown
               className={cn(
@@ -174,7 +175,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { locale, t, setLocale } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, setTheme } = useTheme();
   const isAm = locale === "am";
 
   const navItems = useMemo(() => getNavigation(t), [t]);
@@ -261,9 +262,9 @@ export default function Navbar() {
               </SheetTrigger>
               <SheetContent
                 side="right"
-                className="w-[320px] bg-background/95 backdrop-blur-xl border-border/50"
+                className="w-[min(320px,85vw)] max-w-full bg-background/95 backdrop-blur-xl border-border/50 overflow-y-auto"
               >
-                <div className="mt-6 px-1">
+                <div className="mt-6 px-4">
                   {navItems.map((item) => (
                     <MobileNavItem
                       key={item.href}
@@ -272,25 +273,54 @@ export default function Navbar() {
                     />
                   ))}
                 </div>
-                <div className="mt-8 pt-6 border-t border-border/50 px-1">
-                  <p className="text-[11px] font-medium tracking-widest uppercase text-muted-foreground mb-3">
-                    {t.common.language}
-                  </p>
-                  <div className="flex gap-2">
-                    {(["en", "am"] as const).map((lang) => (
-                      <button
-                        key={lang}
-                        onClick={() => setLocale(lang)}
-                        className={cn(
-                          "px-4 py-2 rounded-lg text-xs font-medium transition-colors",
-                          locale === lang
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-accent text-muted-foreground hover:text-foreground"
-                        )}
-                      >
-                        {lang.toUpperCase()}
-                      </button>
-                    ))}
+                <div className="mt-8 pt-6 border-t border-border/50 px-4 space-y-6">
+                  <div>
+                    <p className="text-[11px] font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                      {t.common.language}
+                    </p>
+                    <div className="flex gap-2">
+                      {(["en", "am"] as const).map((lang) => (
+                        <button
+                          key={lang}
+                          onClick={() => setLocale(lang)}
+                          className={cn(
+                            "px-4 py-2 rounded-lg text-xs font-medium transition-colors",
+                            locale === lang
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-accent text-muted-foreground hover:text-foreground"
+                          )}
+                        >
+                          {lang.toUpperCase()}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-medium tracking-widest uppercase text-muted-foreground mb-3">
+                      {t.common.theme}
+                    </p>
+                    <div className="flex gap-2">
+                      {(["light", "dark"] as const).map((mode) => (
+                        <button
+                          key={mode}
+                          onClick={() => setTheme(mode)}
+                          className={cn(
+                            "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-medium transition-colors",
+                            theme === mode
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-accent text-muted-foreground hover:text-foreground"
+                          )}
+                          aria-pressed={theme === mode}
+                        >
+                          {mode === "light" ? (
+                            <Sun className="h-3.5 w-3.5" />
+                          ) : (
+                            <Moon className="h-3.5 w-3.5" />
+                          )}
+                          {mode === "light" ? t.common.light : t.common.dark}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </SheetContent>

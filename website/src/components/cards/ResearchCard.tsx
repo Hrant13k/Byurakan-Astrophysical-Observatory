@@ -33,7 +33,7 @@ export default function ResearchCard({
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-card/10" />
-        <div className="absolute bottom-4 left-6 right-6 flex items-center gap-5 text-[11px] tracking-wide uppercase text-white/70">
+        <div className="absolute bottom-4 left-6 right-6 flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[11px] tracking-wide uppercase text-foreground/70">
           <span className="flex items-center gap-1.5">
             <Users className="h-3 w-3" />
             {area.researchers} {t.common.researchers}

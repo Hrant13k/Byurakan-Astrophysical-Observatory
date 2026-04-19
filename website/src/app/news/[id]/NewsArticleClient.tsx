@@ -137,7 +137,7 @@ export default function NewsArticleClient({ id }: { id: string }) {
 
             {/* Highlights */}
             {article.highlights.length > 0 && (
-              <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6">
+              <div className="mt-10 rounded-2xl border border-primary/20 bg-primary/[0.07] dark:bg-primary/[0.04] p-6">
                 <p className="text-[11px] font-semibold tracking-[0.25em] uppercase text-primary mb-4">
                   {t.article.keyHighlights}
                 </p>

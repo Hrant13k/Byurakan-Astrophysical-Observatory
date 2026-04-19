@@ -124,7 +124,7 @@ export default function EducationPage() {
               <p className="mt-5 text-[15px] text-muted-foreground leading-[1.75]">
                 {t.common.bissDesc}
               </p>
-              <div className="mt-8 grid grid-cols-3 gap-4">
+              <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
                 {[
                   { value: "12", label: t.common.editions },
                   { value: "20+", label: t.common.countries },
@@ -132,12 +132,12 @@ export default function EducationPage() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="text-center py-4 rounded-xl border border-border/60 bg-muted/30"
+                    className="text-center px-2 py-4 rounded-xl border border-border/60 bg-muted/30"
                   >
                     <p className="text-xl font-bold tracking-tight text-primary">
                       {stat.value}
                     </p>
-                    <p className="mt-0.5 text-[10px] tracking-wider uppercase text-muted-foreground">
+                    <p className="mt-0.5 text-[10px] tracking-wider uppercase text-muted-foreground break-words">
                       {stat.label}
                     </p>
                   </div>

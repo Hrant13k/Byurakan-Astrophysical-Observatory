@@ -27,7 +27,7 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
           className="mt-2"
         >
           <h1
-            className={`font-bold tracking-tight text-foreground leading-[1.05] ${
+            className={`font-bold tracking-tight text-foreground leading-[1.05] break-words hyphens-auto ${
               isAm
                 ? "text-3xl sm:text-4xl lg:text-5xl"
                 : "text-4xl sm:text-5xl lg:text-6xl"
@@ -35,7 +35,7 @@ export default function PageHeader({ title, description }: PageHeaderProps) {
           >
             {title}
           </h1>
-          <p className="mt-5 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed break-words">
             {description}
           </p>
         </motion.div>

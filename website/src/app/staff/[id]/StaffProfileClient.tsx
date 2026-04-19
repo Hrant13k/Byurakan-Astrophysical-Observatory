@@ -287,7 +287,7 @@ export default function StaffProfileClient({ id }: { id: string }) {
               {/* Contact card */}
               <div className="rounded-2xl border border-primary/20 bg-primary/[0.04] p-5">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
+                  <div className="shrink-0 w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center">
                     <Mail className="h-4 w-4 text-primary" />
                   </div>
                   <div>

@@ -15,7 +15,7 @@ export default function ContactPage() {
     {
       icon: MapPin,
       title: t.contact.address,
-      lines: ["Byurakan, Aragatsotn Province", "Armenia, 0213"],
+      lines: [t.footer.addressLine1.replace(/,$/, ""), t.footer.addressLine2],
     },
     {
       icon: Phone,
@@ -30,7 +30,7 @@ export default function ContactPage() {
     {
       icon: Clock,
       title: t.contact.visitingHours,
-      lines: ["Tue \u2013 Sun: 10:00 \u2013 17:00", "Monday: Closed"],
+      lines: [t.contact.hoursWeekdays, t.contact.hoursMonday],
     },
   ];
   return (
@@ -174,17 +174,17 @@ export default function ContactPage() {
                 <ul className="space-y-1.5 text-sm text-muted-foreground">
                   <li>
                     <a href="#" className="hover:text-primary transition-colors">
-                      DFBS Database Portal
+                      {t.contact.dfbsPortal}
                     </a>
                   </li>
                   <li>
                     <a href="#" className="hover:text-primary transition-colors">
-                      Library & Archives
+                      {t.contact.libraryArchives}
                     </a>
                   </li>
                   <li>
                     <a href="#" className="hover:text-primary transition-colors">
-                      Weather Station
+                      {t.contact.weatherStation}
                     </a>
                   </li>
                 </ul>

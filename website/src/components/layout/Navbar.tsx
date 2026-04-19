@@ -4,10 +4,11 @@ import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown, Sun, Moon } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { getNavigation, type NavItem } from "@/data/navigation";
 import { useLanguage } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 import { asset } from "@/lib/asset";
 import { cn } from "@/lib/utils";
 
@@ -87,7 +88,7 @@ function DesktopNavItem({ item, isAm }: { item: NavItem; isAm: boolean }) {
                 <Link
                   key={child.href}
                   href={child.href}
-                  className="block rounded-lg px-3 py-2.5 text-[13px] text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-colors duration-150"
+                  className="block rounded-lg px-3 py-2.5 text-[13px] text-muted-foreground hover:text-foreground hover:bg-accent transition-colors duration-150"
                 >
                   {child.label}
                 </Link>
@@ -173,6 +174,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { locale, t, setLocale } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const isAm = locale === "am";
 
   const navItems = useMemo(() => getNavigation(t), [t]);
@@ -224,10 +226,24 @@ export default function Navbar() {
 
           {/* Right side actions */}
           <div className="flex items-center gap-1">
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              className="inline-flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200"
+              aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+              title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {theme === "dark" ? (
+                <Sun className="h-[18px] w-[18px]" />
+              ) : (
+                <Moon className="h-[18px] w-[18px]" />
+              )}
+            </button>
+
             {/* Language toggle */}
             <button
               onClick={() => setLocale(locale === "en" ? "am" : "en")}
-              className="hidden sm:inline-flex items-center justify-center h-8 px-2.5 rounded-lg text-[12px] font-semibold tracking-wide text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-all duration-200 gap-1.5"
+              className="hidden sm:inline-flex items-center justify-center h-8 px-2.5 rounded-lg text-[12px] font-semibold tracking-wide text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 gap-1.5"
               aria-label="Change language"
             >
               <span className={locale === "en" ? "text-foreground" : "text-muted-foreground/50"}>EN</span>
@@ -238,7 +254,7 @@ export default function Navbar() {
             {/* Mobile menu */}
             <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger
-                className="lg:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-white/[0.04] transition-all duration-200"
+                className="lg:hidden inline-flex items-center justify-center h-9 w-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200"
                 aria-label="Open menu"
               >
                 <Menu className="h-5 w-5" />
